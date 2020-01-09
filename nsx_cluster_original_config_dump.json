@@ -36,6 +36,50 @@
         {
             "LBVirtualServer": {
                 "access_log_enabled": false,
+                "application_profile_path": "/infra/lb-app-profiles/ncp_k8s-cl1_LBHttpProfile",
+                "children": [],
+                "enabled": true,
+                "id": "k8s-cl1_http",
+                "ip_address": "20.20.20.30",
+                "lb_persistence_profile_path": "",
+                "lb_service_path": "/infra/lb-services/k8s-cl1_0_zrmrr",
+                "marked_for_delete": false,
+                "parent_path": "/infra/lb-virtual-servers/k8s-cl1_http",
+                "path": "/infra/lb-virtual-servers/k8s-cl1_http",
+                "pool_path": "",
+                "ports": [
+                    "80"
+                ],
+                "relative_path": "k8s-cl1_http",
+                "resource_type": "LBVirtualServer",
+                "tags": [{
+                        "scope": "ncp/version",
+                        "tag": "1.2.0"
+                    },
+                    {
+                        "scope": "ncp/cluster",
+                        "tag": "k8s-cl1"
+                    },
+                    {
+                        "scope": "ncp/lb_vs_type",
+                        "tag": "http"
+                    },
+                    {
+                        "scope": "ncp/created_for",
+                        "tag": "SLB"
+                    },
+                    {
+                        "scope": "ncp/ip_pool_id",
+                        "tag": "k8s-cl1-lb-ippool"
+                    }
+                ]
+            },
+            "marked_for_delete": false,
+            "resource_type": "ChildLBVirtualServer"
+        },
+        {
+            "LBVirtualServer": {
+                "access_log_enabled": false,
                 "application_profile_path": "/infra/lb-app-profiles/default-tcp-lb-app-profile",
                 "children": [],
                 "enabled": true,
@@ -52,6 +96,50 @@
                 ],
                 "relative_path": "k8s-cl1-api-vip",
                 "resource_type": "LBVirtualServer"
+            },
+            "marked_for_delete": false,
+            "resource_type": "ChildLBVirtualServer"
+        },
+        {
+            "LBVirtualServer": {
+                "access_log_enabled": false,
+                "application_profile_path": "/infra/lb-app-profiles/ncp_k8s-cl1_LBHttpProfile",
+                "children": [],
+                "enabled": true,
+                "id": "k8s-cl1_https_terminated",
+                "ip_address": "20.20.20.30",
+                "lb_persistence_profile_path": "",
+                "lb_service_path": "/infra/lb-services/k8s-cl1_0_zrmrr",
+                "marked_for_delete": false,
+                "parent_path": "/infra/lb-virtual-servers/k8s-cl1_https_terminated",
+                "path": "/infra/lb-virtual-servers/k8s-cl1_https_terminated",
+                "pool_path": "",
+                "ports": [
+                    "443"
+                ],
+                "relative_path": "k8s-cl1_https_terminated",
+                "resource_type": "LBVirtualServer",
+                "tags": [{
+                        "scope": "ncp/version",
+                        "tag": "1.2.0"
+                    },
+                    {
+                        "scope": "ncp/cluster",
+                        "tag": "k8s-cl1"
+                    },
+                    {
+                        "scope": "ncp/lb_vs_type",
+                        "tag": "https_terminated"
+                    },
+                    {
+                        "scope": "ncp/created_for",
+                        "tag": "SLB"
+                    },
+                    {
+                        "scope": "ncp/ip_pool_id",
+                        "tag": "k8s-cl1-lb-ippool"
+                    }
+                ]
             },
             "marked_for_delete": false,
             "resource_type": "ChildLBVirtualServer"
@@ -398,6 +486,55 @@
             "LBAppProfile": {
                 "children": [],
                 "flow_mirroring_enabled": false,
+                "id": "ncp_k8s-cl1_LBFastUdpProfile",
+                "idle_timeout": 300,
+                "marked_for_delete": false,
+                "parent_path": "/infra/lb-app-profiles/ncp_k8s-cl1_LBFastUdpProfile",
+                "path": "/infra/lb-app-profiles/ncp_k8s-cl1_LBFastUdpProfile",
+                "relative_path": "ncp_k8s-cl1_LBFastUdpProfile",
+                "resource_type": "LBFastUdpProfile",
+                "tags": [{
+                        "scope": "ncp/version",
+                        "tag": "1.2.0"
+                    },
+                    {
+                        "scope": "ncp/cluster",
+                        "tag": "k8s-cl1"
+                    }
+                ]
+            },
+            "marked_for_delete": false,
+            "resource_type": "ChildLBAppProfile"
+        },
+        {
+            "LBAppProfile": {
+                "children": [],
+                "close_timeout": 8,
+                "ha_flow_mirroring_enabled": false,
+                "id": "ncp_k8s-cl1_LBFastTcpProfile",
+                "idle_timeout": 1800,
+                "marked_for_delete": false,
+                "parent_path": "/infra/lb-app-profiles/ncp_k8s-cl1_LBFastTcpProfile",
+                "path": "/infra/lb-app-profiles/ncp_k8s-cl1_LBFastTcpProfile",
+                "relative_path": "ncp_k8s-cl1_LBFastTcpProfile",
+                "resource_type": "LBFastTcpProfile",
+                "tags": [{
+                        "scope": "ncp/version",
+                        "tag": "1.2.0"
+                    },
+                    {
+                        "scope": "ncp/cluster",
+                        "tag": "k8s-cl1"
+                    }
+                ]
+            },
+            "marked_for_delete": false,
+            "resource_type": "ChildLBAppProfile"
+        },
+        {
+            "LBAppProfile": {
+                "children": [],
+                "flow_mirroring_enabled": false,
                 "id": "default-udp-lb-app-profile",
                 "idle_timeout": 300,
                 "marked_for_delete": false,
@@ -424,6 +561,34 @@
                 "resource_type": "LBHttpProfile",
                 "response_header_size": 4096,
                 "response_timeout": 60
+            },
+            "marked_for_delete": false,
+            "resource_type": "ChildLBAppProfile"
+        },
+        {
+            "LBAppProfile": {
+                "children": [],
+                "http_redirect_to_https": false,
+                "id": "ncp_k8s-cl1_LBHttpProfile",
+                "idle_timeout": 15,
+                "marked_for_delete": false,
+                "ntlm": false,
+                "parent_path": "/infra/lb-app-profiles/ncp_k8s-cl1_LBHttpProfile",
+                "path": "/infra/lb-app-profiles/ncp_k8s-cl1_LBHttpProfile",
+                "relative_path": "ncp_k8s-cl1_LBHttpProfile",
+                "request_header_size": 1024,
+                "resource_type": "LBHttpProfile",
+                "response_header_size": 4096,
+                "response_timeout": 60,
+                "tags": [{
+                        "scope": "ncp/version",
+                        "tag": "1.2.0"
+                    },
+                    {
+                        "scope": "ncp/cluster",
+                        "tag": "k8s-cl1"
+                    }
+                ]
             },
             "marked_for_delete": false,
             "resource_type": "ChildLBAppProfile"
@@ -1015,6 +1180,33 @@
             "resource_type": "ChildSpoofGuardProfile"
         },
         {
+            "SpoofGuardProfile": {
+                "address_binding_whitelist": true,
+                "children": [],
+                "id": "sgp_k8s-cl1",
+                "marked_for_delete": false,
+                "parent_path": "/infra/spoofguard-profiles/sgp_k8s-cl1",
+                "path": "/infra/spoofguard-profiles/sgp_k8s-cl1",
+                "relative_path": "sgp_k8s-cl1",
+                "resource_type": "SpoofGuardProfile",
+                "tags": [{
+                        "scope": "ncp/version",
+                        "tag": "1.2.0"
+                    },
+                    {
+                        "scope": "ncp/cluster",
+                        "tag": "k8s-cl1"
+                    },
+                    {
+                        "scope": "ncp/container_profile",
+                        "tag": "true"
+                    }
+                ]
+            },
+            "marked_for_delete": false,
+            "resource_type": "ChildSpoofGuardProfile"
+        },
+        {
             "LBServerSslProfile": {
                 "children": [],
                 "cipher_group_label": "BALANCED",
@@ -1305,6 +1497,41 @@
             "LBService": {
                 "access_log_enabled": false,
                 "children": [],
+                "connectivity_path": "/infra/tier-1s/k8s-cl1",
+                "enabled": true,
+                "error_log_level": "INFO",
+                "id": "k8s-cl1_0_zrmrr",
+                "marked_for_delete": false,
+                "parent_path": "/infra/lb-services/k8s-cl1_0_zrmrr",
+                "path": "/infra/lb-services/k8s-cl1_0_zrmrr",
+                "relative_path": "k8s-cl1_0_zrmrr",
+                "resource_type": "LBService",
+                "size": "SMALL",
+                "tags": [{
+                        "scope": "ncp/version",
+                        "tag": "1.2.0"
+                    },
+                    {
+                        "scope": "ncp/cluster",
+                        "tag": "k8s-cl1"
+                    },
+                    {
+                        "scope": "ncp/created_for",
+                        "tag": "SLB"
+                    },
+                    {
+                        "scope": "ncp/lb_t1_link_ip",
+                        "tag": "100.64.96.3"
+                    }
+                ]
+            },
+            "marked_for_delete": false,
+            "resource_type": "ChildLBService"
+        },
+        {
+            "LBService": {
+                "access_log_enabled": false,
+                "children": [],
                 "connectivity_path": "/infra/tier-1s/Mgmt-T1",
                 "enabled": true,
                 "error_log_level": "INFO",
@@ -1318,6 +1545,470 @@
             },
             "marked_for_delete": false,
             "resource_type": "ChildLBService"
+        },
+        {
+            "Tier1": {
+                "children": [{
+                        "PolicyNat": {
+                            "children": [{
+                                    "PolicyNatRule": {
+                                        "action": "SNAT",
+                                        "children": [],
+                                        "enabled": true,
+                                        "id": "nat_591bbaae-4242-40ef-9df0-ad7742c09a6e_0",
+                                        "logging": false,
+                                        "marked_for_delete": false,
+                                        "parent_path": "/infra/tier-1s/k8s-cl1/nat/USER",
+                                        "path": "/infra/tier-1s/k8s-cl1/nat/USER/nat-rules/nat_591bbaae-4242-40ef-9df0-ad7742c09a6e_0",
+                                        "relative_path": "nat_591bbaae-4242-40ef-9df0-ad7742c09a6e_0",
+                                        "resource_type": "PolicyNatRule",
+                                        "scope": [],
+                                        "sequence_number": 100,
+                                        "service": "",
+                                        "source_network": "10.4.0.0/24",
+                                        "tags": [{
+                                                "scope": "ncp/version",
+                                                "tag": "1.2.0"
+                                            },
+                                            {
+                                                "scope": "ncp/cluster",
+                                                "tag": "k8s-cl1"
+                                            },
+                                            {
+                                                "scope": "ncp/project",
+                                                "tag": "test2"
+                                            },
+                                            {
+                                                "scope": "ncp/project_uid",
+                                                "tag": "591bbaae-4242-40ef-9df0-ad7742c09a6e"
+                                            },
+                                            {
+                                                "scope": "ncp/snat",
+                                                "tag": "true"
+                                            },
+                                            {
+                                                "scope": "ncp/extpoolid",
+                                                "tag": "k8s-cl1-external-ippool"
+                                            }
+                                        ],
+                                        "translated_network": "192.168.150.11"
+                                    },
+                                    "marked_for_delete": false,
+                                    "resource_type": "ChildPolicyNatRule"
+                                },
+                                {
+                                    "PolicyNatRule": {
+                                        "action": "SNAT",
+                                        "children": [],
+                                        "enabled": true,
+                                        "id": "nat_56d30ad8-52af-489f-89ee-33b9439624b4_0",
+                                        "logging": false,
+                                        "marked_for_delete": false,
+                                        "parent_path": "/infra/tier-1s/k8s-cl1/nat/USER",
+                                        "path": "/infra/tier-1s/k8s-cl1/nat/USER/nat-rules/nat_56d30ad8-52af-489f-89ee-33b9439624b4_0",
+                                        "relative_path": "nat_56d30ad8-52af-489f-89ee-33b9439624b4_0",
+                                        "resource_type": "PolicyNatRule",
+                                        "scope": [],
+                                        "sequence_number": 100,
+                                        "service": "",
+                                        "source_network": "10.4.5.0/24",
+                                        "tags": [{
+                                                "scope": "ncp/version",
+                                                "tag": "1.2.0"
+                                            },
+                                            {
+                                                "scope": "ncp/cluster",
+                                                "tag": "k8s-cl1"
+                                            },
+                                            {
+                                                "scope": "ncp/project",
+                                                "tag": "test1"
+                                            },
+                                            {
+                                                "scope": "ncp/project_uid",
+                                                "tag": "56d30ad8-52af-489f-89ee-33b9439624b4"
+                                            },
+                                            {
+                                                "scope": "ncp/snat",
+                                                "tag": "true"
+                                            },
+                                            {
+                                                "scope": "ncp/extpoolid",
+                                                "tag": "k8s-cl1-external-ippool"
+                                            }
+                                        ],
+                                        "translated_network": "192.168.150.14"
+                                    },
+                                    "marked_for_delete": false,
+                                    "resource_type": "ChildPolicyNatRule"
+                                },
+                                {
+                                    "PolicyNatRule": {
+                                        "action": "SNAT",
+                                        "children": [],
+                                        "enabled": true,
+                                        "id": "nat_ef95772c-62b0-4e81-8638-d9da85d4a957_0",
+                                        "logging": false,
+                                        "marked_for_delete": false,
+                                        "parent_path": "/infra/tier-1s/k8s-cl1/nat/USER",
+                                        "path": "/infra/tier-1s/k8s-cl1/nat/USER/nat-rules/nat_ef95772c-62b0-4e81-8638-d9da85d4a957_0",
+                                        "relative_path": "nat_ef95772c-62b0-4e81-8638-d9da85d4a957_0",
+                                        "resource_type": "PolicyNatRule",
+                                        "scope": [],
+                                        "sequence_number": 100,
+                                        "service": "",
+                                        "source_network": "10.4.7.0/24",
+                                        "tags": [{
+                                                "scope": "ncp/version",
+                                                "tag": "1.2.0"
+                                            },
+                                            {
+                                                "scope": "ncp/cluster",
+                                                "tag": "k8s-cl1"
+                                            },
+                                            {
+                                                "scope": "ncp/project",
+                                                "tag": "kube-system"
+                                            },
+                                            {
+                                                "scope": "ncp/project_uid",
+                                                "tag": "ef95772c-62b0-4e81-8638-d9da85d4a957"
+                                            },
+                                            {
+                                                "scope": "ncp/snat",
+                                                "tag": "true"
+                                            },
+                                            {
+                                                "scope": "ncp/extpoolid",
+                                                "tag": "k8s-cl1-external-ippool"
+                                            }
+                                        ],
+                                        "translated_network": "192.168.150.17"
+                                    },
+                                    "marked_for_delete": false,
+                                    "resource_type": "ChildPolicyNatRule"
+                                },
+                                {
+                                    "PolicyNatRule": {
+                                        "action": "SNAT",
+                                        "children": [],
+                                        "enabled": true,
+                                        "id": "nat_11f8474e-c2a2-4fdc-bfd5-15f58df1714f_0",
+                                        "logging": false,
+                                        "marked_for_delete": false,
+                                        "parent_path": "/infra/tier-1s/k8s-cl1/nat/USER",
+                                        "path": "/infra/tier-1s/k8s-cl1/nat/USER/nat-rules/nat_11f8474e-c2a2-4fdc-bfd5-15f58df1714f_0",
+                                        "relative_path": "nat_11f8474e-c2a2-4fdc-bfd5-15f58df1714f_0",
+                                        "resource_type": "PolicyNatRule",
+                                        "scope": [],
+                                        "sequence_number": 100,
+                                        "service": "",
+                                        "source_network": "10.4.6.0/24",
+                                        "tags": [{
+                                                "scope": "ncp/version",
+                                                "tag": "1.2.0"
+                                            },
+                                            {
+                                                "scope": "ncp/cluster",
+                                                "tag": "k8s-cl1"
+                                            },
+                                            {
+                                                "scope": "ncp/project",
+                                                "tag": "default"
+                                            },
+                                            {
+                                                "scope": "ncp/project_uid",
+                                                "tag": "11f8474e-c2a2-4fdc-bfd5-15f58df1714f"
+                                            },
+                                            {
+                                                "scope": "ncp/snat",
+                                                "tag": "true"
+                                            },
+                                            {
+                                                "scope": "ncp/extpoolid",
+                                                "tag": "k8s-cl1-external-ippool"
+                                            }
+                                        ],
+                                        "translated_network": "192.168.150.16"
+                                    },
+                                    "marked_for_delete": false,
+                                    "resource_type": "ChildPolicyNatRule"
+                                },
+                                {
+                                    "PolicyNatRule": {
+                                        "action": "SNAT",
+                                        "children": [],
+                                        "enabled": true,
+                                        "id": "nat_41bb1e46-31f9-42e8-8961-7a0d93b63e78_0",
+                                        "logging": false,
+                                        "marked_for_delete": false,
+                                        "parent_path": "/infra/tier-1s/k8s-cl1/nat/USER",
+                                        "path": "/infra/tier-1s/k8s-cl1/nat/USER/nat-rules/nat_41bb1e46-31f9-42e8-8961-7a0d93b63e78_0",
+                                        "relative_path": "nat_41bb1e46-31f9-42e8-8961-7a0d93b63e78_0",
+                                        "resource_type": "PolicyNatRule",
+                                        "scope": [],
+                                        "sequence_number": 100,
+                                        "service": "",
+                                        "source_network": "10.1.0.0/24",
+                                        "tags": [{
+                                                "scope": "ncp/version",
+                                                "tag": "1.2.0"
+                                            },
+                                            {
+                                                "scope": "ncp/cluster",
+                                                "tag": "k8s-cl1"
+                                            },
+                                            {
+                                                "scope": "ncp/project",
+                                                "tag": "test"
+                                            },
+                                            {
+                                                "scope": "ncp/project_uid",
+                                                "tag": "41bb1e46-31f9-42e8-8961-7a0d93b63e78"
+                                            },
+                                            {
+                                                "scope": "ncp/snat",
+                                                "tag": "true"
+                                            },
+                                            {
+                                                "scope": "ncp/extpoolid",
+                                                "tag": "k8s-cl1-external-ippool"
+                                            }
+                                        ],
+                                        "translated_network": "192.168.150.18"
+                                    },
+                                    "marked_for_delete": false,
+                                    "resource_type": "ChildPolicyNatRule"
+                                },
+                                {
+                                    "PolicyNatRule": {
+                                        "action": "SNAT",
+                                        "children": [],
+                                        "enabled": true,
+                                        "id": "nat_0afc593a-d351-46a3-9c79-a80f3284574d_0",
+                                        "logging": false,
+                                        "marked_for_delete": false,
+                                        "parent_path": "/infra/tier-1s/k8s-cl1/nat/USER",
+                                        "path": "/infra/tier-1s/k8s-cl1/nat/USER/nat-rules/nat_0afc593a-d351-46a3-9c79-a80f3284574d_0",
+                                        "relative_path": "nat_0afc593a-d351-46a3-9c79-a80f3284574d_0",
+                                        "resource_type": "PolicyNatRule",
+                                        "scope": [],
+                                        "sequence_number": 100,
+                                        "service": "",
+                                        "source_network": "10.4.2.0/24",
+                                        "tags": [{
+                                                "scope": "ncp/version",
+                                                "tag": "1.2.0"
+                                            },
+                                            {
+                                                "scope": "ncp/cluster",
+                                                "tag": "k8s-cl1"
+                                            },
+                                            {
+                                                "scope": "ncp/project",
+                                                "tag": "kube-node-lease"
+                                            },
+                                            {
+                                                "scope": "ncp/project_uid",
+                                                "tag": "0afc593a-d351-46a3-9c79-a80f3284574d"
+                                            },
+                                            {
+                                                "scope": "ncp/snat",
+                                                "tag": "true"
+                                            },
+                                            {
+                                                "scope": "ncp/extpoolid",
+                                                "tag": "k8s-cl1-external-ippool"
+                                            }
+                                        ],
+                                        "translated_network": "192.168.150.12"
+                                    },
+                                    "marked_for_delete": false,
+                                    "resource_type": "ChildPolicyNatRule"
+                                },
+                                {
+                                    "PolicyNatRule": {
+                                        "action": "SNAT",
+                                        "children": [],
+                                        "enabled": true,
+                                        "id": "nat_9e258344-a12f-4a39-b04d-50962d4729d5_0",
+                                        "logging": false,
+                                        "marked_for_delete": false,
+                                        "parent_path": "/infra/tier-1s/k8s-cl1/nat/USER",
+                                        "path": "/infra/tier-1s/k8s-cl1/nat/USER/nat-rules/nat_9e258344-a12f-4a39-b04d-50962d4729d5_0",
+                                        "relative_path": "nat_9e258344-a12f-4a39-b04d-50962d4729d5_0",
+                                        "resource_type": "PolicyNatRule",
+                                        "scope": [],
+                                        "sequence_number": 100,
+                                        "service": "",
+                                        "source_network": "10.4.4.0/24",
+                                        "tags": [{
+                                                "scope": "ncp/version",
+                                                "tag": "1.2.0"
+                                            },
+                                            {
+                                                "scope": "ncp/cluster",
+                                                "tag": "k8s-cl1"
+                                            },
+                                            {
+                                                "scope": "ncp/project",
+                                                "tag": "kube-public"
+                                            },
+                                            {
+                                                "scope": "ncp/project_uid",
+                                                "tag": "9e258344-a12f-4a39-b04d-50962d4729d5"
+                                            },
+                                            {
+                                                "scope": "ncp/snat",
+                                                "tag": "true"
+                                            },
+                                            {
+                                                "scope": "ncp/extpoolid",
+                                                "tag": "k8s-cl1-external-ippool"
+                                            }
+                                        ],
+                                        "translated_network": "192.168.150.15"
+                                    },
+                                    "marked_for_delete": false,
+                                    "resource_type": "ChildPolicyNatRule"
+                                },
+                                {
+                                    "PolicyNatRule": {
+                                        "action": "SNAT",
+                                        "children": [],
+                                        "enabled": true,
+                                        "id": "nat_86b8ae6b-713e-42d9-9617-70ff862c440e_0",
+                                        "logging": false,
+                                        "marked_for_delete": false,
+                                        "parent_path": "/infra/tier-1s/k8s-cl1/nat/USER",
+                                        "path": "/infra/tier-1s/k8s-cl1/nat/USER/nat-rules/nat_86b8ae6b-713e-42d9-9617-70ff862c440e_0",
+                                        "relative_path": "nat_86b8ae6b-713e-42d9-9617-70ff862c440e_0",
+                                        "resource_type": "PolicyNatRule",
+                                        "scope": [],
+                                        "sequence_number": 100,
+                                        "service": "",
+                                        "source_network": "10.4.3.0/24",
+                                        "tags": [{
+                                                "scope": "ncp/version",
+                                                "tag": "1.2.0"
+                                            },
+                                            {
+                                                "scope": "ncp/cluster",
+                                                "tag": "k8s-cl1"
+                                            },
+                                            {
+                                                "scope": "ncp/project",
+                                                "tag": "nsx-system"
+                                            },
+                                            {
+                                                "scope": "ncp/project_uid",
+                                                "tag": "86b8ae6b-713e-42d9-9617-70ff862c440e"
+                                            },
+                                            {
+                                                "scope": "ncp/snat",
+                                                "tag": "true"
+                                            },
+                                            {
+                                                "scope": "ncp/extpoolid",
+                                                "tag": "k8s-cl1-external-ippool"
+                                            }
+                                        ],
+                                        "translated_network": "192.168.150.13"
+                                    },
+                                    "marked_for_delete": false,
+                                    "resource_type": "ChildPolicyNatRule"
+                                }
+                            ],
+                            "id": "USER",
+                            "marked_for_delete": false,
+                            "nat_type": "USER",
+                            "parent_path": "/infra/tier-1s/k8s-cl1",
+                            "path": "/infra/tier-1s/k8s-cl1/nat/USER",
+                            "relative_path": "USER",
+                            "resource_type": "PolicyNat"
+                        },
+                        "marked_for_delete": false,
+                        "resource_type": "ChildPolicyNat"
+                    },
+                    {
+                        "PolicyNat": {
+                            "children": [],
+                            "id": "DEFAULT",
+                            "marked_for_delete": false,
+                            "nat_type": "DEFAULT",
+                            "parent_path": "/infra/tier-1s/k8s-cl1",
+                            "path": "/infra/tier-1s/k8s-cl1/nat/DEFAULT",
+                            "relative_path": "DEFAULT",
+                            "resource_type": "PolicyNat"
+                        },
+                        "marked_for_delete": false,
+                        "resource_type": "ChildPolicyNat"
+                    },
+                    {
+                        "PolicyNat": {
+                            "children": [],
+                            "id": "INTERNAL",
+                            "marked_for_delete": false,
+                            "nat_type": "INTERNAL",
+                            "parent_path": "/infra/tier-1s/k8s-cl1",
+                            "path": "/infra/tier-1s/k8s-cl1/nat/INTERNAL",
+                            "relative_path": "INTERNAL",
+                            "resource_type": "PolicyNat"
+                        },
+                        "marked_for_delete": false,
+                        "resource_type": "ChildPolicyNat"
+                    },
+                    {
+                        "LocaleServices": {
+                            "children": [],
+                            "edge_cluster_path": "/infra/sites/default/enforcement-points/default/edge-clusters/659398fd-65eb-4657-91eb-498fb8d7d633",
+                            "id": "k8s-cl1-0",
+                            "marked_for_delete": false,
+                            "parent_path": "/infra/tier-1s/k8s-cl1",
+                            "path": "/infra/tier-1s/k8s-cl1/locale-services/k8s-cl1-0",
+                            "preferred_edge_paths": [],
+                            "relative_path": "k8s-cl1-0",
+                            "resource_type": "LocaleServices"
+                        },
+                        "marked_for_delete": false,
+                        "resource_type": "ChildLocaleServices"
+                    }
+                ],
+                "default_rule_logging": false,
+                "description": "Automatically created from NCP config",
+                "disable_firewall": false,
+                "enable_standby_relocation": false,
+                "failover_mode": "NON_PREEMPTIVE",
+                "force_whitelisting": false,
+                "id": "k8s-cl1",
+                "ipv6_profile_paths": [
+                    "/infra/ipv6-ndra-profiles/default",
+                    "/infra/ipv6-dad-profiles/default"
+                ],
+                "marked_for_delete": false,
+                "parent_path": "/infra/tier-1s/k8s-cl1",
+                "path": "/infra/tier-1s/k8s-cl1",
+                "relative_path": "k8s-cl1",
+                "resource_type": "Tier1",
+                "route_advertisement_types": [
+                    "TIER1_STATIC_ROUTES",
+                    "TIER1_LB_VIP",
+                    "TIER1_NAT",
+                    "TIER1_CONNECTED"
+                ],
+                "tags": [{
+                        "scope": "ncp/version",
+                        "tag": "1.2.0"
+                    },
+                    {
+                        "scope": "ncp/cluster",
+                        "tag": "k8s-cl1"
+                    }
+                ],
+                "tier0_path": "/infra/tier-0s/T0-GW"
+            },
+            "marked_for_delete": false,
+            "resource_type": "ChildTier1"
         },
         {
             "Tier1": {
@@ -25956,6 +26647,77 @@
                     "ServiceEntry": {
                         "children": [],
                         "destination_ports": [
+                            "8080",
+                            "8181"
+                        ],
+                        "id": "entry",
+                        "l4_protocol": "TCP",
+                        "marked_for_delete": false,
+                        "parent_path": "/infra/services/hc_801cc89d-8c79-438c-845f-c601dc268019",
+                        "path": "/infra/services/hc_801cc89d-8c79-438c-845f-c601dc268019/service-entries/entry",
+                        "relative_path": "entry",
+                        "resource_type": "L4PortSetServiceEntry",
+                        "source_ports": []
+                    },
+                    "marked_for_delete": false,
+                    "resource_type": "ChildServiceEntry"
+                }],
+                "id": "hc_801cc89d-8c79-438c-845f-c601dc268019",
+                "is_default": false,
+                "marked_for_delete": false,
+                "parent_path": "/infra/services/hc_801cc89d-8c79-438c-845f-c601dc268019",
+                "path": "/infra/services/hc_801cc89d-8c79-438c-845f-c601dc268019",
+                "relative_path": "hc_801cc89d-8c79-438c-845f-c601dc268019",
+                "resource_type": "Service",
+                "service_entries": [{
+                    "destination_ports": [
+                        "8080",
+                        "8181"
+                    ],
+                    "id": "entry",
+                    "l4_protocol": "TCP",
+                    "marked_for_delete": false,
+                    "parent_path": "/infra/services/hc_801cc89d-8c79-438c-845f-c601dc268019",
+                    "path": "/infra/services/hc_801cc89d-8c79-438c-845f-c601dc268019/service-entries/entry",
+                    "relative_path": "entry",
+                    "resource_type": "L4PortSetServiceEntry",
+                    "source_ports": []
+                }],
+                "tags": [{
+                        "scope": "ncp/version",
+                        "tag": "1.2.0"
+                    },
+                    {
+                        "scope": "ncp/cluster",
+                        "tag": "k8s-cl1"
+                    },
+                    {
+                        "scope": "ncp/project",
+                        "tag": "kube-system"
+                    },
+                    {
+                        "scope": "ncp/pod",
+                        "tag": "coredns-5644d7b6d9-t2jg5"
+                    },
+                    {
+                        "scope": "ncp/pod_uid",
+                        "tag": "801cc89d-8c79-438c-845f-c601dc268019"
+                    },
+                    {
+                        "scope": "ncp/created_for",
+                        "tag": "healthcheck"
+                    }
+                ]
+            },
+            "marked_for_delete": false,
+            "resource_type": "ChildService"
+        },
+        {
+            "Service": {
+                "children": [{
+                    "ServiceEntry": {
+                        "children": [],
+                        "destination_ports": [
                             "6200"
                         ],
                         "id": "Oracle_Notification_Service_remote_port",
@@ -30112,6 +30874,77 @@
                     "ServiceEntry": {
                         "children": [],
                         "destination_ports": [
+                            "8080",
+                            "8181"
+                        ],
+                        "id": "entry",
+                        "l4_protocol": "TCP",
+                        "marked_for_delete": false,
+                        "parent_path": "/infra/services/hc_139fc3d9-da5b-4358-9f91-a676e62dafe1",
+                        "path": "/infra/services/hc_139fc3d9-da5b-4358-9f91-a676e62dafe1/service-entries/entry",
+                        "relative_path": "entry",
+                        "resource_type": "L4PortSetServiceEntry",
+                        "source_ports": []
+                    },
+                    "marked_for_delete": false,
+                    "resource_type": "ChildServiceEntry"
+                }],
+                "id": "hc_139fc3d9-da5b-4358-9f91-a676e62dafe1",
+                "is_default": false,
+                "marked_for_delete": false,
+                "parent_path": "/infra/services/hc_139fc3d9-da5b-4358-9f91-a676e62dafe1",
+                "path": "/infra/services/hc_139fc3d9-da5b-4358-9f91-a676e62dafe1",
+                "relative_path": "hc_139fc3d9-da5b-4358-9f91-a676e62dafe1",
+                "resource_type": "Service",
+                "service_entries": [{
+                    "destination_ports": [
+                        "8080",
+                        "8181"
+                    ],
+                    "id": "entry",
+                    "l4_protocol": "TCP",
+                    "marked_for_delete": false,
+                    "parent_path": "/infra/services/hc_139fc3d9-da5b-4358-9f91-a676e62dafe1",
+                    "path": "/infra/services/hc_139fc3d9-da5b-4358-9f91-a676e62dafe1/service-entries/entry",
+                    "relative_path": "entry",
+                    "resource_type": "L4PortSetServiceEntry",
+                    "source_ports": []
+                }],
+                "tags": [{
+                        "scope": "ncp/version",
+                        "tag": "1.2.0"
+                    },
+                    {
+                        "scope": "ncp/cluster",
+                        "tag": "k8s-cl1"
+                    },
+                    {
+                        "scope": "ncp/project",
+                        "tag": "kube-system"
+                    },
+                    {
+                        "scope": "ncp/pod",
+                        "tag": "coredns-5644d7b6d9-c9w96"
+                    },
+                    {
+                        "scope": "ncp/pod_uid",
+                        "tag": "139fc3d9-da5b-4358-9f91-a676e62dafe1"
+                    },
+                    {
+                        "scope": "ncp/created_for",
+                        "tag": "healthcheck"
+                    }
+                ]
+            },
+            "marked_for_delete": false,
+            "resource_type": "ChildService"
+        },
+        {
+            "Service": {
+                "children": [{
+                    "ServiceEntry": {
+                        "children": [],
+                        "destination_ports": [
                             "8244"
                         ],
                         "id": "VMware-VCO-Data",
@@ -33546,6 +34379,90 @@
                         "resource_type": "ChildRedirectionPolicy"
                     },
                     {
+                        "SecurityPolicy": {
+                            "category": "Environment",
+                            "children": [],
+                            "id": "3c5627b0-312d-11ea-b89b-17668b5802b2",
+                            "lock_modified_time": 0,
+                            "locked": false,
+                            "marked_for_delete": false,
+                            "parent_path": "/infra/domains/default",
+                            "path": "/infra/domains/default/security-policies/3c5627b0-312d-11ea-b89b-17668b5802b2",
+                            "relative_path": "3c5627b0-312d-11ea-b89b-17668b5802b2",
+                            "resource_type": "SecurityPolicy",
+                            "scope": [
+                                "ANY"
+                            ],
+                            "sequence_number": 20,
+                            "stateful": true
+                        },
+                        "marked_for_delete": false,
+                        "resource_type": "ChildSecurityPolicy"
+                    },
+                    {
+                        "SecurityPolicy": {
+                            "category": "Environment",
+                            "children": [],
+                            "id": "33c8d2f0-312d-11ea-b89b-17668b5802b2",
+                            "lock_modified_time": 0,
+                            "locked": false,
+                            "marked_for_delete": false,
+                            "parent_path": "/infra/domains/default",
+                            "path": "/infra/domains/default/security-policies/33c8d2f0-312d-11ea-b89b-17668b5802b2",
+                            "relative_path": "33c8d2f0-312d-11ea-b89b-17668b5802b2",
+                            "resource_type": "SecurityPolicy",
+                            "scope": [
+                                "ANY"
+                            ],
+                            "sequence_number": 10,
+                            "stateful": true
+                        },
+                        "marked_for_delete": false,
+                        "resource_type": "ChildSecurityPolicy"
+                    },
+                    {
+                        "SecurityPolicy": {
+                            "category": "Environment",
+                            "children": [],
+                            "id": "3c5627b0-312d-11ea-b89b-17668b5802b2",
+                            "lock_modified_time": 0,
+                            "locked": false,
+                            "marked_for_delete": false,
+                            "parent_path": "/infra/domains/default",
+                            "path": "/infra/domains/default/security-policies/3c5627b0-312d-11ea-b89b-17668b5802b2",
+                            "relative_path": "3c5627b0-312d-11ea-b89b-17668b5802b2",
+                            "resource_type": "SecurityPolicy",
+                            "scope": [
+                                "ANY"
+                            ],
+                            "sequence_number": 20,
+                            "stateful": true
+                        },
+                        "marked_for_delete": false,
+                        "resource_type": "ChildSecurityPolicy"
+                    },
+                    {
+                        "SecurityPolicy": {
+                            "category": "Environment",
+                            "children": [],
+                            "id": "33c8d2f0-312d-11ea-b89b-17668b5802b2",
+                            "lock_modified_time": 0,
+                            "locked": false,
+                            "marked_for_delete": false,
+                            "parent_path": "/infra/domains/default",
+                            "path": "/infra/domains/default/security-policies/33c8d2f0-312d-11ea-b89b-17668b5802b2",
+                            "relative_path": "33c8d2f0-312d-11ea-b89b-17668b5802b2",
+                            "resource_type": "SecurityPolicy",
+                            "scope": [
+                                "ANY"
+                            ],
+                            "sequence_number": 10,
+                            "stateful": true
+                        },
+                        "marked_for_delete": false,
+                        "resource_type": "ChildSecurityPolicy"
+                    },
+                    {
                         "Group": {
                             "children": [],
                             "description": "System PoolLB group used for security policies with VirtualServer as a source.",
@@ -33583,6 +34500,56 @@
                             "description": "System VIP group used for security policies with VirtualServer as a destination.",
                             "expression": [{
                                 "ip_addresses": [
+                                    "20.20.20.30"
+                                ],
+                                "marked_for_delete": false,
+                                "resource_type": "IPAddressExpression"
+                            }],
+                            "id": "NLB.VIP.[k8s-cl1_http]",
+                            "marked_for_delete": false,
+                            "parent_path": "/infra/domains/default",
+                            "path": "/infra/domains/default/groups/NLB.VIP.[k8s-cl1_http]",
+                            "relative_path": "NLB.VIP.[k8s-cl1_http]",
+                            "resource_type": "Group",
+                            "tags": [{
+                                "scope": "NLB-VIP_ID",
+                                "tag": "k8s-cl1_http"
+                            }]
+                        },
+                        "marked_for_delete": false,
+                        "resource_type": "ChildGroup"
+                    },
+                    {
+                        "Group": {
+                            "children": [],
+                            "description": "System VIP group used for security policies with VirtualServer as a destination.",
+                            "expression": [{
+                                "ip_addresses": [
+                                    "20.20.20.30"
+                                ],
+                                "marked_for_delete": false,
+                                "resource_type": "IPAddressExpression"
+                            }],
+                            "id": "NLB.VIP.[k8s-cl1_https_terminated]",
+                            "marked_for_delete": false,
+                            "parent_path": "/infra/domains/default",
+                            "path": "/infra/domains/default/groups/NLB.VIP.[k8s-cl1_https_terminated]",
+                            "relative_path": "NLB.VIP.[k8s-cl1_https_terminated]",
+                            "resource_type": "Group",
+                            "tags": [{
+                                "scope": "NLB-VIP_ID",
+                                "tag": "k8s-cl1_https_terminated"
+                            }]
+                        },
+                        "marked_for_delete": false,
+                        "resource_type": "ChildGroup"
+                    },
+                    {
+                        "Group": {
+                            "children": [],
+                            "description": "System VIP group used for security policies with VirtualServer as a destination.",
+                            "expression": [{
+                                "ip_addresses": [
                                     "20.20.20.20"
                                 ],
                                 "marked_for_delete": false,
@@ -33606,6 +34573,42 @@
                         "GatewayPolicy": {
                             "category": "Default",
                             "children": [{
+                                    "Rule": {
+                                        "action": "ALLOW",
+                                        "children": [],
+                                        "description": "k8s-cl1",
+                                        "destination_groups": [
+                                            "ANY"
+                                        ],
+                                        "destinations_excluded": false,
+                                        "direction": "IN_OUT",
+                                        "disabled": false,
+                                        "id": "k8s-cl1-tier1-default_blacklist_rule",
+                                        "logged": false,
+                                        "marked_for_delete": false,
+                                        "parent_path": "/infra/domains/default/gateway-policies/Policy_Default_Infra",
+                                        "path": "/infra/domains/default/gateway-policies/Policy_Default_Infra/rules/k8s-cl1-tier1-default_blacklist_rule",
+                                        "profiles": [
+                                            "ANY"
+                                        ],
+                                        "relative_path": "k8s-cl1-tier1-default_blacklist_rule",
+                                        "resource_type": "Rule",
+                                        "scope": [
+                                            "/infra/tier-1s/k8s-cl1"
+                                        ],
+                                        "sequence_number": 300,
+                                        "services": [
+                                            "ANY"
+                                        ],
+                                        "source_groups": [
+                                            "ANY"
+                                        ],
+                                        "sources_excluded": false
+                                    },
+                                    "marked_for_delete": false,
+                                    "resource_type": "ChildRule"
+                                },
+                                {
                                     "Rule": {
                                         "action": "ALLOW",
                                         "children": [],
@@ -33704,9 +34707,446 @@
             "resource_type": "ChildDomain"
         },
         {
+            "Domain": {
+                "children": [{
+                        "SecurityPolicy": {
+                            "category": "Environment",
+                            "children": [{
+                                    "Rule": {
+                                        "action": "ALLOW",
+                                        "children": [],
+                                        "destination_groups": [
+                                            "ANY"
+                                        ],
+                                        "destinations_excluded": false,
+                                        "direction": "IN_OUT",
+                                        "disabled": false,
+                                        "id": "hcr_801cc89d-8c79-438c-845f-c601dc268019",
+                                        "ip_protocol": "IPV4_IPV6",
+                                        "logged": false,
+                                        "marked_for_delete": false,
+                                        "parent_path": "/infra/domains/k8s-cl1/security-policies/hc_k8s-cl1",
+                                        "path": "/infra/domains/k8s-cl1/security-policies/hc_k8s-cl1/rules/hcr_801cc89d-8c79-438c-845f-c601dc268019",
+                                        "profiles": [
+                                            "ANY"
+                                        ],
+                                        "relative_path": "hcr_801cc89d-8c79-438c-845f-c601dc268019",
+                                        "resource_type": "Rule",
+                                        "scope": [
+                                            "/infra/domains/k8s-cl1/groups/hc_port_801cc89d-8c79-438c-845f-c601dc268019_tgt"
+                                        ],
+                                        "sequence_number": 1,
+                                        "services": [
+                                            "/infra/services/hc_801cc89d-8c79-438c-845f-c601dc268019"
+                                        ],
+                                        "source_groups": [
+                                            "/infra/domains/k8s-cl1/groups/hc_d95c29ac-0f57-4d71-9e19-80a062e5f285_src"
+                                        ],
+                                        "sources_excluded": false
+                                    },
+                                    "marked_for_delete": false,
+                                    "resource_type": "ChildRule"
+                                },
+                                {
+                                    "Rule": {
+                                        "action": "ALLOW",
+                                        "children": [],
+                                        "destination_groups": [
+                                            "ANY"
+                                        ],
+                                        "destinations_excluded": false,
+                                        "direction": "IN_OUT",
+                                        "disabled": false,
+                                        "id": "hcr_139fc3d9-da5b-4358-9f91-a676e62dafe1",
+                                        "ip_protocol": "IPV4_IPV6",
+                                        "logged": false,
+                                        "marked_for_delete": false,
+                                        "parent_path": "/infra/domains/k8s-cl1/security-policies/hc_k8s-cl1",
+                                        "path": "/infra/domains/k8s-cl1/security-policies/hc_k8s-cl1/rules/hcr_139fc3d9-da5b-4358-9f91-a676e62dafe1",
+                                        "profiles": [
+                                            "ANY"
+                                        ],
+                                        "relative_path": "hcr_139fc3d9-da5b-4358-9f91-a676e62dafe1",
+                                        "resource_type": "Rule",
+                                        "scope": [
+                                            "/infra/domains/k8s-cl1/groups/hc_port_139fc3d9-da5b-4358-9f91-a676e62dafe1_tgt"
+                                        ],
+                                        "sequence_number": 2,
+                                        "services": [
+                                            "/infra/services/hc_139fc3d9-da5b-4358-9f91-a676e62dafe1"
+                                        ],
+                                        "source_groups": [
+                                            "/infra/domains/k8s-cl1/groups/hc_6fff2b3f-96cf-4fad-acd5-0ac9153e0642_src"
+                                        ],
+                                        "sources_excluded": false
+                                    },
+                                    "marked_for_delete": false,
+                                    "resource_type": "ChildRule"
+                                }
+                            ],
+                            "description": "Health Check Security Policy",
+                            "id": "hc_k8s-cl1",
+                            "lock_modified_time": 0,
+                            "locked": false,
+                            "marked_for_delete": false,
+                            "parent_path": "/infra/domains/k8s-cl1",
+                            "path": "/infra/domains/k8s-cl1/security-policies/hc_k8s-cl1",
+                            "relative_path": "hc_k8s-cl1",
+                            "resource_type": "SecurityPolicy",
+                            "scope": [
+                                "ANY"
+                            ],
+                            "sequence_number": 1,
+                            "stateful": true,
+                            "tags": [{
+                                    "scope": "ncp/version",
+                                    "tag": "1.2.0"
+                                },
+                                {
+                                    "scope": "ncp/cluster",
+                                    "tag": "k8s-cl1"
+                                },
+                                {
+                                    "scope": "ncp/sec_policy_type",
+                                    "tag": "healthcheck"
+                                }
+                            ]
+                        },
+                        "marked_for_delete": false,
+                        "resource_type": "ChildSecurityPolicy"
+                    },
+                    {
+                        "SecurityPolicy": {
+                            "category": "Environment",
+                            "children": [{
+                                    "Rule": {
+                                        "action": "ALLOW",
+                                        "children": [],
+                                        "destination_groups": [
+                                            "ANY"
+                                        ],
+                                        "destinations_excluded": false,
+                                        "direction": "IN_OUT",
+                                        "disabled": false,
+                                        "id": "hcr_801cc89d-8c79-438c-845f-c601dc268019",
+                                        "ip_protocol": "IPV4_IPV6",
+                                        "logged": false,
+                                        "marked_for_delete": false,
+                                        "parent_path": "/infra/domains/k8s-cl1/security-policies/hc_k8s-cl1",
+                                        "path": "/infra/domains/k8s-cl1/security-policies/hc_k8s-cl1/rules/hcr_801cc89d-8c79-438c-845f-c601dc268019",
+                                        "profiles": [
+                                            "ANY"
+                                        ],
+                                        "relative_path": "hcr_801cc89d-8c79-438c-845f-c601dc268019",
+                                        "resource_type": "Rule",
+                                        "scope": [
+                                            "/infra/domains/k8s-cl1/groups/hc_port_801cc89d-8c79-438c-845f-c601dc268019_tgt"
+                                        ],
+                                        "sequence_number": 1,
+                                        "services": [
+                                            "/infra/services/hc_801cc89d-8c79-438c-845f-c601dc268019"
+                                        ],
+                                        "source_groups": [
+                                            "/infra/domains/k8s-cl1/groups/hc_d95c29ac-0f57-4d71-9e19-80a062e5f285_src"
+                                        ],
+                                        "sources_excluded": false
+                                    },
+                                    "marked_for_delete": false,
+                                    "resource_type": "ChildRule"
+                                },
+                                {
+                                    "Rule": {
+                                        "action": "ALLOW",
+                                        "children": [],
+                                        "destination_groups": [
+                                            "ANY"
+                                        ],
+                                        "destinations_excluded": false,
+                                        "direction": "IN_OUT",
+                                        "disabled": false,
+                                        "id": "hcr_139fc3d9-da5b-4358-9f91-a676e62dafe1",
+                                        "ip_protocol": "IPV4_IPV6",
+                                        "logged": false,
+                                        "marked_for_delete": false,
+                                        "parent_path": "/infra/domains/k8s-cl1/security-policies/hc_k8s-cl1",
+                                        "path": "/infra/domains/k8s-cl1/security-policies/hc_k8s-cl1/rules/hcr_139fc3d9-da5b-4358-9f91-a676e62dafe1",
+                                        "profiles": [
+                                            "ANY"
+                                        ],
+                                        "relative_path": "hcr_139fc3d9-da5b-4358-9f91-a676e62dafe1",
+                                        "resource_type": "Rule",
+                                        "scope": [
+                                            "/infra/domains/k8s-cl1/groups/hc_port_139fc3d9-da5b-4358-9f91-a676e62dafe1_tgt"
+                                        ],
+                                        "sequence_number": 2,
+                                        "services": [
+                                            "/infra/services/hc_139fc3d9-da5b-4358-9f91-a676e62dafe1"
+                                        ],
+                                        "source_groups": [
+                                            "/infra/domains/k8s-cl1/groups/hc_6fff2b3f-96cf-4fad-acd5-0ac9153e0642_src"
+                                        ],
+                                        "sources_excluded": false
+                                    },
+                                    "marked_for_delete": false,
+                                    "resource_type": "ChildRule"
+                                }
+                            ],
+                            "description": "Health Check Security Policy",
+                            "id": "hc_k8s-cl1",
+                            "lock_modified_time": 0,
+                            "locked": false,
+                            "marked_for_delete": false,
+                            "parent_path": "/infra/domains/k8s-cl1",
+                            "path": "/infra/domains/k8s-cl1/security-policies/hc_k8s-cl1",
+                            "relative_path": "hc_k8s-cl1",
+                            "resource_type": "SecurityPolicy",
+                            "scope": [
+                                "ANY"
+                            ],
+                            "sequence_number": 1,
+                            "stateful": true,
+                            "tags": [{
+                                    "scope": "ncp/version",
+                                    "tag": "1.2.0"
+                                },
+                                {
+                                    "scope": "ncp/cluster",
+                                    "tag": "k8s-cl1"
+                                },
+                                {
+                                    "scope": "ncp/sec_policy_type",
+                                    "tag": "healthcheck"
+                                }
+                            ]
+                        },
+                        "marked_for_delete": false,
+                        "resource_type": "ChildSecurityPolicy"
+                    },
+                    {
+                        "Group": {
+                            "children": [],
+                            "expression": [{
+                                "marked_for_delete": false,
+                                "paths": [
+                                    "/infra/segments/seg_ef95772c-62b0-4e81-8638-d9da85d4a957_0/ports/port_801cc89d-8c79-438c-845f-c601dc268019"
+                                ],
+                                "resource_type": "PathExpression"
+                            }],
+                            "id": "hc_port_801cc89d-8c79-438c-845f-c601dc268019_tgt",
+                            "marked_for_delete": false,
+                            "parent_path": "/infra/domains/k8s-cl1",
+                            "path": "/infra/domains/k8s-cl1/groups/hc_port_801cc89d-8c79-438c-845f-c601dc268019_tgt",
+                            "relative_path": "hc_port_801cc89d-8c79-438c-845f-c601dc268019_tgt",
+                            "resource_type": "Group",
+                            "tags": [{
+                                    "scope": "ncp/version",
+                                    "tag": "1.2.0"
+                                },
+                                {
+                                    "scope": "ncp/cluster",
+                                    "tag": "k8s-cl1"
+                                },
+                                {
+                                    "scope": "ncp/project",
+                                    "tag": "kube-system"
+                                },
+                                {
+                                    "scope": "ncp/pod",
+                                    "tag": "coredns-5644d7b6d9-t2jg5"
+                                },
+                                {
+                                    "scope": "ncp/pod_uid",
+                                    "tag": "801cc89d-8c79-438c-845f-c601dc268019"
+                                },
+                                {
+                                    "scope": "ncp/nsg_type",
+                                    "tag": "target"
+                                },
+                                {
+                                    "scope": "ncp/created_for",
+                                    "tag": "healthcheck"
+                                }
+                            ]
+                        },
+                        "marked_for_delete": false,
+                        "resource_type": "ChildGroup"
+                    },
+                    {
+                        "Group": {
+                            "children": [],
+                            "expression": [{
+                                "ip_addresses": [
+                                    "10.10.10.22"
+                                ],
+                                "marked_for_delete": false,
+                                "resource_type": "IPAddressExpression"
+                            }],
+                            "id": "hc_6fff2b3f-96cf-4fad-acd5-0ac9153e0642_src",
+                            "marked_for_delete": false,
+                            "parent_path": "/infra/domains/k8s-cl1",
+                            "path": "/infra/domains/k8s-cl1/groups/hc_6fff2b3f-96cf-4fad-acd5-0ac9153e0642_src",
+                            "relative_path": "hc_6fff2b3f-96cf-4fad-acd5-0ac9153e0642_src",
+                            "resource_type": "Group",
+                            "tags": [{
+                                    "scope": "ncp/version",
+                                    "tag": "1.2.0"
+                                },
+                                {
+                                    "scope": "ncp/cluster",
+                                    "tag": "k8s-cl1"
+                                },
+                                {
+                                    "scope": "ncp/created_for",
+                                    "tag": "healthcheck"
+                                },
+                                {
+                                    "scope": "ncp/nsg_type",
+                                    "tag": "src"
+                                }
+                            ]
+                        },
+                        "marked_for_delete": false,
+                        "resource_type": "ChildGroup"
+                    },
+                    {
+                        "Group": {
+                            "children": [],
+                            "expression": [{
+                                "ip_addresses": [
+                                    "10.10.10.21"
+                                ],
+                                "marked_for_delete": false,
+                                "resource_type": "IPAddressExpression"
+                            }],
+                            "id": "hc_d95c29ac-0f57-4d71-9e19-80a062e5f285_src",
+                            "marked_for_delete": false,
+                            "parent_path": "/infra/domains/k8s-cl1",
+                            "path": "/infra/domains/k8s-cl1/groups/hc_d95c29ac-0f57-4d71-9e19-80a062e5f285_src",
+                            "relative_path": "hc_d95c29ac-0f57-4d71-9e19-80a062e5f285_src",
+                            "resource_type": "Group",
+                            "tags": [{
+                                    "scope": "ncp/version",
+                                    "tag": "1.2.0"
+                                },
+                                {
+                                    "scope": "ncp/cluster",
+                                    "tag": "k8s-cl1"
+                                },
+                                {
+                                    "scope": "ncp/created_for",
+                                    "tag": "healthcheck"
+                                },
+                                {
+                                    "scope": "ncp/nsg_type",
+                                    "tag": "src"
+                                }
+                            ]
+                        },
+                        "marked_for_delete": false,
+                        "resource_type": "ChildGroup"
+                    },
+                    {
+                        "Group": {
+                            "children": [],
+                            "expression": [{
+                                "marked_for_delete": false,
+                                "paths": [
+                                    "/infra/segments/seg_ef95772c-62b0-4e81-8638-d9da85d4a957_0/ports/port_139fc3d9-da5b-4358-9f91-a676e62dafe1"
+                                ],
+                                "resource_type": "PathExpression"
+                            }],
+                            "id": "hc_port_139fc3d9-da5b-4358-9f91-a676e62dafe1_tgt",
+                            "marked_for_delete": false,
+                            "parent_path": "/infra/domains/k8s-cl1",
+                            "path": "/infra/domains/k8s-cl1/groups/hc_port_139fc3d9-da5b-4358-9f91-a676e62dafe1_tgt",
+                            "relative_path": "hc_port_139fc3d9-da5b-4358-9f91-a676e62dafe1_tgt",
+                            "resource_type": "Group",
+                            "tags": [{
+                                    "scope": "ncp/version",
+                                    "tag": "1.2.0"
+                                },
+                                {
+                                    "scope": "ncp/cluster",
+                                    "tag": "k8s-cl1"
+                                },
+                                {
+                                    "scope": "ncp/project",
+                                    "tag": "kube-system"
+                                },
+                                {
+                                    "scope": "ncp/pod",
+                                    "tag": "coredns-5644d7b6d9-c9w96"
+                                },
+                                {
+                                    "scope": "ncp/pod_uid",
+                                    "tag": "139fc3d9-da5b-4358-9f91-a676e62dafe1"
+                                },
+                                {
+                                    "scope": "ncp/nsg_type",
+                                    "tag": "target"
+                                },
+                                {
+                                    "scope": "ncp/created_for",
+                                    "tag": "healthcheck"
+                                }
+                            ]
+                        },
+                        "marked_for_delete": false,
+                        "resource_type": "ChildGroup"
+                    }
+                ],
+                "id": "k8s-cl1",
+                "marked_for_delete": false,
+                "parent_path": "/infra/domains/k8s-cl1",
+                "path": "/infra/domains/k8s-cl1",
+                "relative_path": "k8s-cl1",
+                "resource_type": "Domain",
+                "tags": [{
+                        "scope": "ncp/cluster_domain",
+                        "tag": "true"
+                    },
+                    {
+                        "scope": "ncp/cluster",
+                        "tag": "k8s-cl1"
+                    }
+                ]
+            },
+            "marked_for_delete": false,
+            "resource_type": "ChildDomain"
+        },
+        {
+            "IpAddressBlock": {
+                "children": [],
+                "cidr": "10.2.0.0/16",
+                "description": "IP space for Pods which must not be SNATed",
+                "id": "k8s-cl1-container-network-nosnat",
+                "marked_for_delete": false,
+                "parent_path": "/infra/ip-blocks/k8s-cl1-container-network-nosnat",
+                "path": "/infra/ip-blocks/k8s-cl1-container-network-nosnat",
+                "relative_path": "k8s-cl1-container-network-nosnat",
+                "resource_type": "IpAddressBlock"
+            },
+            "marked_for_delete": false,
+            "resource_type": "ChildIpAddressBlock"
+        },
+        {
             "IpAddressBlock": {
                 "children": [],
                 "cidr": "10.4.0.0/16",
+                "id": "k8sblock",
+                "marked_for_delete": false,
+                "parent_path": "/infra/ip-blocks/k8sblock",
+                "path": "/infra/ip-blocks/k8sblock",
+                "relative_path": "k8sblock",
+                "resource_type": "IpAddressBlock"
+            },
+            "marked_for_delete": false,
+            "resource_type": "ChildIpAddressBlock"
+        },
+        {
+            "IpAddressBlock": {
+                "children": [],
+                "cidr": "10.1.0.0/16",
                 "description": "IP Block for POD Networking in k8s-cl1. A /24 will be taken out of this block for every k8s namespace.",
                 "id": "k8s-cl1-pod-network-ipblock",
                 "marked_for_delete": false,
@@ -33745,23 +35185,126 @@
         {
             "Segment": {
                 "advanced_config": {
-                    "address_pool_paths": [],
+                    "address_pool_paths": [
+                        "/infra/ip-pools/ipp_ef95772c-62b0-4e81-8638-d9da85d4a957_0"
+                    ],
                     "connectivity": "ON",
                     "hybrid": false,
                     "local_egress": false
                 },
                 "children": [{
                         "SegmentPort": {
+                            "attachment": {
+                                "allocate_addresses": "BOTH",
+                                "app_id": "nsx.kube-system.coredns-5644d7b6d9-c9w96",
+                                "context_id": "5b5255b8-6aa5-43e5-babe-fafccaec6dcf",
+                                "id": "89d4b30a-07d0-4d52-811c-7c7f6b6bf062",
+                                "traffic_tag": 11,
+                                "type": "CHILD"
+                            },
                             "children": [],
-                            "id": "default:c8f3f4bb-aad0-4ce5-8afa-5ae10777d734",
+                            "id": "port_139fc3d9-da5b-4358-9f91-a676e62dafe1",
                             "marked_for_delete": false,
-                            "parent_path": "/infra/segments/k8s-vifs-sg",
-                            "path": "/infra/segments/k8s-vifs-sg/ports/default:c8f3f4bb-aad0-4ce5-8afa-5ae10777d734",
-                            "relative_path": "default:c8f3f4bb-aad0-4ce5-8afa-5ae10777d734",
+                            "parent_path": "/infra/segments/seg_ef95772c-62b0-4e81-8638-d9da85d4a957_0",
+                            "path": "/infra/segments/seg_ef95772c-62b0-4e81-8638-d9da85d4a957_0/ports/port_139fc3d9-da5b-4358-9f91-a676e62dafe1",
+                            "relative_path": "port_139fc3d9-da5b-4358-9f91-a676e62dafe1",
                             "resource_type": "SegmentPort",
                             "tags": [{
-                                    "scope": "ncp/node_name",
-                                    "tag": "master1.corp.local"
+                                    "scope": "ncp/version",
+                                    "tag": "1.2.0"
+                                },
+                                {
+                                    "scope": "ncp/cluster",
+                                    "tag": "k8s-cl1"
+                                },
+                                {
+                                    "scope": "ncp/project",
+                                    "tag": "kube-system"
+                                },
+                                {
+                                    "scope": "ncp/project_uid",
+                                    "tag": "ef95772c-62b0-4e81-8638-d9da85d4a957"
+                                },
+                                {
+                                    "scope": "ncp/pod",
+                                    "tag": "coredns-5644d7b6d9-c9w96"
+                                },
+                                {
+                                    "scope": "ncp/pod_uid",
+                                    "tag": "139fc3d9-da5b-4358-9f91-a676e62dafe1"
+                                },
+                                {
+                                    "scope": "k8s-app",
+                                    "tag": "kube-dns"
+                                }
+                            ]
+                        },
+                        "marked_for_delete": false,
+                        "resource_type": "ChildSegmentPort"
+                    },
+                    {
+                        "SegmentPort": {
+                            "attachment": {
+                                "allocate_addresses": "BOTH",
+                                "app_id": "nsx.kube-system.coredns-5644d7b6d9-t2jg5",
+                                "context_id": "1b6d1238-e683-4ad3-8533-ea6f62b7b436",
+                                "id": "9698ddf5-94b3-4a17-a442-dc6a0609f40a",
+                                "traffic_tag": 7,
+                                "type": "CHILD"
+                            },
+                            "children": [],
+                            "id": "port_801cc89d-8c79-438c-845f-c601dc268019",
+                            "marked_for_delete": false,
+                            "parent_path": "/infra/segments/seg_ef95772c-62b0-4e81-8638-d9da85d4a957_0",
+                            "path": "/infra/segments/seg_ef95772c-62b0-4e81-8638-d9da85d4a957_0/ports/port_801cc89d-8c79-438c-845f-c601dc268019",
+                            "relative_path": "port_801cc89d-8c79-438c-845f-c601dc268019",
+                            "resource_type": "SegmentPort",
+                            "tags": [{
+                                    "scope": "ncp/version",
+                                    "tag": "1.2.0"
+                                },
+                                {
+                                    "scope": "ncp/cluster",
+                                    "tag": "k8s-cl1"
+                                },
+                                {
+                                    "scope": "ncp/project",
+                                    "tag": "kube-system"
+                                },
+                                {
+                                    "scope": "ncp/project_uid",
+                                    "tag": "ef95772c-62b0-4e81-8638-d9da85d4a957"
+                                },
+                                {
+                                    "scope": "ncp/pod",
+                                    "tag": "coredns-5644d7b6d9-t2jg5"
+                                },
+                                {
+                                    "scope": "ncp/pod_uid",
+                                    "tag": "801cc89d-8c79-438c-845f-c601dc268019"
+                                },
+                                {
+                                    "scope": "k8s-app",
+                                    "tag": "kube-dns"
+                                }
+                            ]
+                        },
+                        "marked_for_delete": false,
+                        "resource_type": "ChildSegmentPort"
+                    },
+                    {
+                        "SegmentSecurityProfileBindingMap": {
+                            "children": [],
+                            "id": "sgpm_ef95772c-62b0-4e81-8638-d9da85d4a957_0",
+                            "marked_for_delete": false,
+                            "parent_path": "/infra/segments/seg_ef95772c-62b0-4e81-8638-d9da85d4a957_0",
+                            "path": "/infra/segments/seg_ef95772c-62b0-4e81-8638-d9da85d4a957_0/segment-security-profile-binding-maps/sgpm_ef95772c-62b0-4e81-8638-d9da85d4a957_0",
+                            "relative_path": "sgpm_ef95772c-62b0-4e81-8638-d9da85d4a957_0",
+                            "resource_type": "SegmentSecurityProfileBindingMap",
+                            "spoofguard_profile_path": "/infra/spoofguard-profiles/sgp_k8s-cl1",
+                            "tags": [{
+                                    "scope": "ncp/version",
+                                    "tag": "1.2.0"
                                 },
                                 {
                                     "scope": "ncp/cluster",
@@ -33770,9 +35313,52 @@
                             ]
                         },
                         "marked_for_delete": false,
-                        "resource_type": "ChildSegmentPort"
+                        "resource_type": "ChildSegmentSecurityProfileBindingMap"
+                    }
+                ],
+                "connectivity_path": "/infra/tier-1s/k8s-cl1",
+                "id": "seg_ef95772c-62b0-4e81-8638-d9da85d4a957_0",
+                "marked_for_delete": false,
+                "parent_path": "/infra/segments/seg_ef95772c-62b0-4e81-8638-d9da85d4a957_0",
+                "path": "/infra/segments/seg_ef95772c-62b0-4e81-8638-d9da85d4a957_0",
+                "relative_path": "seg_ef95772c-62b0-4e81-8638-d9da85d4a957_0",
+                "resource_type": "Segment",
+                "subnets": [{
+                    "gateway_address": "10.4.7.1/24",
+                    "network": "10.4.7.0/24"
+                }],
+                "tags": [{
+                        "scope": "ncp/version",
+                        "tag": "1.2.0"
                     },
                     {
+                        "scope": "ncp/cluster",
+                        "tag": "k8s-cl1"
+                    },
+                    {
+                        "scope": "ncp/project",
+                        "tag": "kube-system"
+                    },
+                    {
+                        "scope": "ncp/project_uid",
+                        "tag": "ef95772c-62b0-4e81-8638-d9da85d4a957"
+                    }
+                ],
+                "transport_zone_path": "/infra/sites/default/enforcement-points/default/transport-zones/41842a22-2ce7-485b-8520-828059fc44e4",
+                "type": "ROUTED"
+            },
+            "marked_for_delete": false,
+            "resource_type": "ChildSegment"
+        },
+        {
+            "Segment": {
+                "advanced_config": {
+                    "address_pool_paths": [],
+                    "connectivity": "ON",
+                    "hybrid": false,
+                    "local_egress": false
+                },
+                "children": [{
                         "SegmentPort": {
                             "children": [],
                             "id": "default:df57027f-e730-462a-a576-6352d676002f",
@@ -33828,6 +35414,28 @@
                             "tags": [{
                                     "scope": "ncp/node_name",
                                     "tag": "worker2.corp.local"
+                                },
+                                {
+                                    "scope": "ncp/cluster",
+                                    "tag": "k8s-cl1"
+                                }
+                            ]
+                        },
+                        "marked_for_delete": false,
+                        "resource_type": "ChildSegmentPort"
+                    },
+                    {
+                        "SegmentPort": {
+                            "children": [],
+                            "id": "default:c8f3f4bb-aad0-4ce5-8afa-5ae10777d734",
+                            "marked_for_delete": false,
+                            "parent_path": "/infra/segments/k8s-vifs-sg",
+                            "path": "/infra/segments/k8s-vifs-sg/ports/default:c8f3f4bb-aad0-4ce5-8afa-5ae10777d734",
+                            "relative_path": "default:c8f3f4bb-aad0-4ce5-8afa-5ae10777d734",
+                            "resource_type": "SegmentPort",
+                            "tags": [{
+                                    "scope": "ncp/node_name",
+                                    "tag": "master1.corp.local"
                                 },
                                 {
                                     "scope": "ncp/cluster",
@@ -33898,20 +35506,6 @@
                     {
                         "SegmentPort": {
                             "children": [],
-                            "id": "default:30dfd48c-2945-4236-8475-7a88367b38a8",
-                            "marked_for_delete": false,
-                            "parent_path": "/infra/segments/MgmtSg",
-                            "path": "/infra/segments/MgmtSg/ports/default:30dfd48c-2945-4236-8475-7a88367b38a8",
-                            "relative_path": "default:30dfd48c-2945-4236-8475-7a88367b38a8",
-                            "resource_type": "SegmentPort",
-                            "tags": []
-                        },
-                        "marked_for_delete": false,
-                        "resource_type": "ChildSegmentPort"
-                    },
-                    {
-                        "SegmentPort": {
-                            "children": [],
                             "id": "default:93482f0b-a335-4968-8bf0-db8927aa9157",
                             "marked_for_delete": false,
                             "parent_path": "/infra/segments/MgmtSg",
@@ -33950,6 +35544,20 @@
                         },
                         "marked_for_delete": false,
                         "resource_type": "ChildSegmentPort"
+                    },
+                    {
+                        "SegmentPort": {
+                            "children": [],
+                            "id": "default:30dfd48c-2945-4236-8475-7a88367b38a8",
+                            "marked_for_delete": false,
+                            "parent_path": "/infra/segments/MgmtSg",
+                            "path": "/infra/segments/MgmtSg/ports/default:30dfd48c-2945-4236-8475-7a88367b38a8",
+                            "relative_path": "default:30dfd48c-2945-4236-8475-7a88367b38a8",
+                            "resource_type": "SegmentPort",
+                            "tags": []
+                        },
+                        "marked_for_delete": false,
+                        "resource_type": "ChildSegmentPort"
                     }
                 ],
                 "connectivity_path": "/infra/tier-1s/Mgmt-T1",
@@ -33963,6 +35571,73 @@
                     "gateway_address": "10.10.10.1/24",
                     "network": "10.10.10.0/24"
                 }],
+                "transport_zone_path": "/infra/sites/default/enforcement-points/default/transport-zones/41842a22-2ce7-485b-8520-828059fc44e4",
+                "type": "ROUTED"
+            },
+            "marked_for_delete": false,
+            "resource_type": "ChildSegment"
+        },
+        {
+            "Segment": {
+                "advanced_config": {
+                    "address_pool_paths": [
+                        "/infra/ip-pools/ipp_56d30ad8-52af-489f-89ee-33b9439624b4_0"
+                    ],
+                    "connectivity": "ON",
+                    "hybrid": false,
+                    "local_egress": false
+                },
+                "children": [{
+                    "SegmentSecurityProfileBindingMap": {
+                        "children": [],
+                        "id": "sgpm_56d30ad8-52af-489f-89ee-33b9439624b4_0",
+                        "marked_for_delete": false,
+                        "parent_path": "/infra/segments/seg_56d30ad8-52af-489f-89ee-33b9439624b4_0",
+                        "path": "/infra/segments/seg_56d30ad8-52af-489f-89ee-33b9439624b4_0/segment-security-profile-binding-maps/sgpm_56d30ad8-52af-489f-89ee-33b9439624b4_0",
+                        "relative_path": "sgpm_56d30ad8-52af-489f-89ee-33b9439624b4_0",
+                        "resource_type": "SegmentSecurityProfileBindingMap",
+                        "spoofguard_profile_path": "/infra/spoofguard-profiles/sgp_k8s-cl1",
+                        "tags": [{
+                                "scope": "ncp/version",
+                                "tag": "1.2.0"
+                            },
+                            {
+                                "scope": "ncp/cluster",
+                                "tag": "k8s-cl1"
+                            }
+                        ]
+                    },
+                    "marked_for_delete": false,
+                    "resource_type": "ChildSegmentSecurityProfileBindingMap"
+                }],
+                "connectivity_path": "/infra/tier-1s/k8s-cl1",
+                "id": "seg_56d30ad8-52af-489f-89ee-33b9439624b4_0",
+                "marked_for_delete": false,
+                "parent_path": "/infra/segments/seg_56d30ad8-52af-489f-89ee-33b9439624b4_0",
+                "path": "/infra/segments/seg_56d30ad8-52af-489f-89ee-33b9439624b4_0",
+                "relative_path": "seg_56d30ad8-52af-489f-89ee-33b9439624b4_0",
+                "resource_type": "Segment",
+                "subnets": [{
+                    "gateway_address": "10.4.5.1/24",
+                    "network": "10.4.5.0/24"
+                }],
+                "tags": [{
+                        "scope": "ncp/version",
+                        "tag": "1.2.0"
+                    },
+                    {
+                        "scope": "ncp/cluster",
+                        "tag": "k8s-cl1"
+                    },
+                    {
+                        "scope": "ncp/project",
+                        "tag": "test1"
+                    },
+                    {
+                        "scope": "ncp/project_uid",
+                        "tag": "56d30ad8-52af-489f-89ee-33b9439624b4"
+                    }
+                ],
                 "transport_zone_path": "/infra/sites/default/enforcement-points/default/transport-zones/41842a22-2ce7-485b-8520-828059fc44e4",
                 "type": "ROUTED"
             },
@@ -33989,6 +35664,455 @@
                 "vlan_ids": [
                     "240"
                 ]
+            },
+            "marked_for_delete": false,
+            "resource_type": "ChildSegment"
+        },
+        {
+            "Segment": {
+                "advanced_config": {
+                    "address_pool_paths": [
+                        "/infra/ip-pools/ipp_591bbaae-4242-40ef-9df0-ad7742c09a6e_0"
+                    ],
+                    "connectivity": "ON",
+                    "hybrid": false,
+                    "local_egress": false
+                },
+                "children": [{
+                    "SegmentSecurityProfileBindingMap": {
+                        "children": [],
+                        "id": "sgpm_591bbaae-4242-40ef-9df0-ad7742c09a6e_0",
+                        "marked_for_delete": false,
+                        "parent_path": "/infra/segments/seg_591bbaae-4242-40ef-9df0-ad7742c09a6e_0",
+                        "path": "/infra/segments/seg_591bbaae-4242-40ef-9df0-ad7742c09a6e_0/segment-security-profile-binding-maps/sgpm_591bbaae-4242-40ef-9df0-ad7742c09a6e_0",
+                        "relative_path": "sgpm_591bbaae-4242-40ef-9df0-ad7742c09a6e_0",
+                        "resource_type": "SegmentSecurityProfileBindingMap",
+                        "spoofguard_profile_path": "/infra/spoofguard-profiles/sgp_k8s-cl1",
+                        "tags": [{
+                                "scope": "ncp/version",
+                                "tag": "1.2.0"
+                            },
+                            {
+                                "scope": "ncp/cluster",
+                                "tag": "k8s-cl1"
+                            }
+                        ]
+                    },
+                    "marked_for_delete": false,
+                    "resource_type": "ChildSegmentSecurityProfileBindingMap"
+                }],
+                "connectivity_path": "/infra/tier-1s/k8s-cl1",
+                "id": "seg_591bbaae-4242-40ef-9df0-ad7742c09a6e_0",
+                "marked_for_delete": false,
+                "parent_path": "/infra/segments/seg_591bbaae-4242-40ef-9df0-ad7742c09a6e_0",
+                "path": "/infra/segments/seg_591bbaae-4242-40ef-9df0-ad7742c09a6e_0",
+                "relative_path": "seg_591bbaae-4242-40ef-9df0-ad7742c09a6e_0",
+                "resource_type": "Segment",
+                "subnets": [{
+                    "gateway_address": "10.4.0.1/24",
+                    "network": "10.4.0.0/24"
+                }],
+                "tags": [{
+                        "scope": "ncp/version",
+                        "tag": "1.2.0"
+                    },
+                    {
+                        "scope": "ncp/cluster",
+                        "tag": "k8s-cl1"
+                    },
+                    {
+                        "scope": "ncp/project",
+                        "tag": "test2"
+                    },
+                    {
+                        "scope": "ncp/project_uid",
+                        "tag": "591bbaae-4242-40ef-9df0-ad7742c09a6e"
+                    }
+                ],
+                "transport_zone_path": "/infra/sites/default/enforcement-points/default/transport-zones/41842a22-2ce7-485b-8520-828059fc44e4",
+                "type": "ROUTED"
+            },
+            "marked_for_delete": false,
+            "resource_type": "ChildSegment"
+        },
+        {
+            "Segment": {
+                "advanced_config": {
+                    "address_pool_paths": [
+                        "/infra/ip-pools/ipp_0afc593a-d351-46a3-9c79-a80f3284574d_0"
+                    ],
+                    "connectivity": "ON",
+                    "hybrid": false,
+                    "local_egress": false
+                },
+                "children": [{
+                    "SegmentSecurityProfileBindingMap": {
+                        "children": [],
+                        "id": "sgpm_0afc593a-d351-46a3-9c79-a80f3284574d_0",
+                        "marked_for_delete": false,
+                        "parent_path": "/infra/segments/seg_0afc593a-d351-46a3-9c79-a80f3284574d_0",
+                        "path": "/infra/segments/seg_0afc593a-d351-46a3-9c79-a80f3284574d_0/segment-security-profile-binding-maps/sgpm_0afc593a-d351-46a3-9c79-a80f3284574d_0",
+                        "relative_path": "sgpm_0afc593a-d351-46a3-9c79-a80f3284574d_0",
+                        "resource_type": "SegmentSecurityProfileBindingMap",
+                        "spoofguard_profile_path": "/infra/spoofguard-profiles/sgp_k8s-cl1",
+                        "tags": [{
+                                "scope": "ncp/version",
+                                "tag": "1.2.0"
+                            },
+                            {
+                                "scope": "ncp/cluster",
+                                "tag": "k8s-cl1"
+                            }
+                        ]
+                    },
+                    "marked_for_delete": false,
+                    "resource_type": "ChildSegmentSecurityProfileBindingMap"
+                }],
+                "connectivity_path": "/infra/tier-1s/k8s-cl1",
+                "id": "seg_0afc593a-d351-46a3-9c79-a80f3284574d_0",
+                "marked_for_delete": false,
+                "parent_path": "/infra/segments/seg_0afc593a-d351-46a3-9c79-a80f3284574d_0",
+                "path": "/infra/segments/seg_0afc593a-d351-46a3-9c79-a80f3284574d_0",
+                "relative_path": "seg_0afc593a-d351-46a3-9c79-a80f3284574d_0",
+                "resource_type": "Segment",
+                "subnets": [{
+                    "gateway_address": "10.4.2.1/24",
+                    "network": "10.4.2.0/24"
+                }],
+                "tags": [{
+                        "scope": "ncp/version",
+                        "tag": "1.2.0"
+                    },
+                    {
+                        "scope": "ncp/cluster",
+                        "tag": "k8s-cl1"
+                    },
+                    {
+                        "scope": "ncp/project",
+                        "tag": "kube-node-lease"
+                    },
+                    {
+                        "scope": "ncp/project_uid",
+                        "tag": "0afc593a-d351-46a3-9c79-a80f3284574d"
+                    }
+                ],
+                "transport_zone_path": "/infra/sites/default/enforcement-points/default/transport-zones/41842a22-2ce7-485b-8520-828059fc44e4",
+                "type": "ROUTED"
+            },
+            "marked_for_delete": false,
+            "resource_type": "ChildSegment"
+        },
+        {
+            "Segment": {
+                "advanced_config": {
+                    "address_pool_paths": [
+                        "/infra/ip-pools/ipp_11f8474e-c2a2-4fdc-bfd5-15f58df1714f_0"
+                    ],
+                    "connectivity": "ON",
+                    "hybrid": false,
+                    "local_egress": false
+                },
+                "children": [{
+                    "SegmentSecurityProfileBindingMap": {
+                        "children": [],
+                        "id": "sgpm_11f8474e-c2a2-4fdc-bfd5-15f58df1714f_0",
+                        "marked_for_delete": false,
+                        "parent_path": "/infra/segments/seg_11f8474e-c2a2-4fdc-bfd5-15f58df1714f_0",
+                        "path": "/infra/segments/seg_11f8474e-c2a2-4fdc-bfd5-15f58df1714f_0/segment-security-profile-binding-maps/sgpm_11f8474e-c2a2-4fdc-bfd5-15f58df1714f_0",
+                        "relative_path": "sgpm_11f8474e-c2a2-4fdc-bfd5-15f58df1714f_0",
+                        "resource_type": "SegmentSecurityProfileBindingMap",
+                        "spoofguard_profile_path": "/infra/spoofguard-profiles/sgp_k8s-cl1",
+                        "tags": [{
+                                "scope": "ncp/version",
+                                "tag": "1.2.0"
+                            },
+                            {
+                                "scope": "ncp/cluster",
+                                "tag": "k8s-cl1"
+                            }
+                        ]
+                    },
+                    "marked_for_delete": false,
+                    "resource_type": "ChildSegmentSecurityProfileBindingMap"
+                }],
+                "connectivity_path": "/infra/tier-1s/k8s-cl1",
+                "id": "seg_11f8474e-c2a2-4fdc-bfd5-15f58df1714f_0",
+                "marked_for_delete": false,
+                "parent_path": "/infra/segments/seg_11f8474e-c2a2-4fdc-bfd5-15f58df1714f_0",
+                "path": "/infra/segments/seg_11f8474e-c2a2-4fdc-bfd5-15f58df1714f_0",
+                "relative_path": "seg_11f8474e-c2a2-4fdc-bfd5-15f58df1714f_0",
+                "resource_type": "Segment",
+                "subnets": [{
+                    "gateway_address": "10.4.6.1/24",
+                    "network": "10.4.6.0/24"
+                }],
+                "tags": [{
+                        "scope": "ncp/version",
+                        "tag": "1.2.0"
+                    },
+                    {
+                        "scope": "ncp/cluster",
+                        "tag": "k8s-cl1"
+                    },
+                    {
+                        "scope": "ncp/project",
+                        "tag": "default"
+                    },
+                    {
+                        "scope": "ncp/project_uid",
+                        "tag": "11f8474e-c2a2-4fdc-bfd5-15f58df1714f"
+                    }
+                ],
+                "transport_zone_path": "/infra/sites/default/enforcement-points/default/transport-zones/41842a22-2ce7-485b-8520-828059fc44e4",
+                "type": "ROUTED"
+            },
+            "marked_for_delete": false,
+            "resource_type": "ChildSegment"
+        },
+        {
+            "Segment": {
+                "advanced_config": {
+                    "address_pool_paths": [
+                        "/infra/ip-pools/ipp_86b8ae6b-713e-42d9-9617-70ff862c440e_0"
+                    ],
+                    "connectivity": "ON",
+                    "hybrid": false,
+                    "local_egress": false
+                },
+                "children": [{
+                    "SegmentSecurityProfileBindingMap": {
+                        "children": [],
+                        "id": "sgpm_86b8ae6b-713e-42d9-9617-70ff862c440e_0",
+                        "marked_for_delete": false,
+                        "parent_path": "/infra/segments/seg_86b8ae6b-713e-42d9-9617-70ff862c440e_0",
+                        "path": "/infra/segments/seg_86b8ae6b-713e-42d9-9617-70ff862c440e_0/segment-security-profile-binding-maps/sgpm_86b8ae6b-713e-42d9-9617-70ff862c440e_0",
+                        "relative_path": "sgpm_86b8ae6b-713e-42d9-9617-70ff862c440e_0",
+                        "resource_type": "SegmentSecurityProfileBindingMap",
+                        "spoofguard_profile_path": "/infra/spoofguard-profiles/sgp_k8s-cl1",
+                        "tags": [{
+                                "scope": "ncp/version",
+                                "tag": "1.2.0"
+                            },
+                            {
+                                "scope": "ncp/cluster",
+                                "tag": "k8s-cl1"
+                            }
+                        ]
+                    },
+                    "marked_for_delete": false,
+                    "resource_type": "ChildSegmentSecurityProfileBindingMap"
+                }],
+                "connectivity_path": "/infra/tier-1s/k8s-cl1",
+                "id": "seg_86b8ae6b-713e-42d9-9617-70ff862c440e_0",
+                "marked_for_delete": false,
+                "parent_path": "/infra/segments/seg_86b8ae6b-713e-42d9-9617-70ff862c440e_0",
+                "path": "/infra/segments/seg_86b8ae6b-713e-42d9-9617-70ff862c440e_0",
+                "relative_path": "seg_86b8ae6b-713e-42d9-9617-70ff862c440e_0",
+                "resource_type": "Segment",
+                "subnets": [{
+                    "gateway_address": "10.4.3.1/24",
+                    "network": "10.4.3.0/24"
+                }],
+                "tags": [{
+                        "scope": "ncp/version",
+                        "tag": "1.2.0"
+                    },
+                    {
+                        "scope": "ncp/cluster",
+                        "tag": "k8s-cl1"
+                    },
+                    {
+                        "scope": "ncp/project",
+                        "tag": "nsx-system"
+                    },
+                    {
+                        "scope": "ncp/project_uid",
+                        "tag": "86b8ae6b-713e-42d9-9617-70ff862c440e"
+                    }
+                ],
+                "transport_zone_path": "/infra/sites/default/enforcement-points/default/transport-zones/41842a22-2ce7-485b-8520-828059fc44e4",
+                "type": "ROUTED"
+            },
+            "marked_for_delete": false,
+            "resource_type": "ChildSegment"
+        },
+        {
+            "Segment": {
+                "advanced_config": {
+                    "address_pool_paths": [
+                        "/infra/ip-pools/ipp_9e258344-a12f-4a39-b04d-50962d4729d5_0"
+                    ],
+                    "connectivity": "ON",
+                    "hybrid": false,
+                    "local_egress": false
+                },
+                "children": [{
+                    "SegmentSecurityProfileBindingMap": {
+                        "children": [],
+                        "id": "sgpm_9e258344-a12f-4a39-b04d-50962d4729d5_0",
+                        "marked_for_delete": false,
+                        "parent_path": "/infra/segments/seg_9e258344-a12f-4a39-b04d-50962d4729d5_0",
+                        "path": "/infra/segments/seg_9e258344-a12f-4a39-b04d-50962d4729d5_0/segment-security-profile-binding-maps/sgpm_9e258344-a12f-4a39-b04d-50962d4729d5_0",
+                        "relative_path": "sgpm_9e258344-a12f-4a39-b04d-50962d4729d5_0",
+                        "resource_type": "SegmentSecurityProfileBindingMap",
+                        "spoofguard_profile_path": "/infra/spoofguard-profiles/sgp_k8s-cl1",
+                        "tags": [{
+                                "scope": "ncp/version",
+                                "tag": "1.2.0"
+                            },
+                            {
+                                "scope": "ncp/cluster",
+                                "tag": "k8s-cl1"
+                            }
+                        ]
+                    },
+                    "marked_for_delete": false,
+                    "resource_type": "ChildSegmentSecurityProfileBindingMap"
+                }],
+                "connectivity_path": "/infra/tier-1s/k8s-cl1",
+                "id": "seg_9e258344-a12f-4a39-b04d-50962d4729d5_0",
+                "marked_for_delete": false,
+                "parent_path": "/infra/segments/seg_9e258344-a12f-4a39-b04d-50962d4729d5_0",
+                "path": "/infra/segments/seg_9e258344-a12f-4a39-b04d-50962d4729d5_0",
+                "relative_path": "seg_9e258344-a12f-4a39-b04d-50962d4729d5_0",
+                "resource_type": "Segment",
+                "subnets": [{
+                    "gateway_address": "10.4.4.1/24",
+                    "network": "10.4.4.0/24"
+                }],
+                "tags": [{
+                        "scope": "ncp/version",
+                        "tag": "1.2.0"
+                    },
+                    {
+                        "scope": "ncp/cluster",
+                        "tag": "k8s-cl1"
+                    },
+                    {
+                        "scope": "ncp/project",
+                        "tag": "kube-public"
+                    },
+                    {
+                        "scope": "ncp/project_uid",
+                        "tag": "9e258344-a12f-4a39-b04d-50962d4729d5"
+                    }
+                ],
+                "transport_zone_path": "/infra/sites/default/enforcement-points/default/transport-zones/41842a22-2ce7-485b-8520-828059fc44e4",
+                "type": "ROUTED"
+            },
+            "marked_for_delete": false,
+            "resource_type": "ChildSegment"
+        },
+        {
+            "Segment": {
+                "advanced_config": {
+                    "address_pool_paths": [
+                        "/infra/ip-pools/ipp_41bb1e46-31f9-42e8-8961-7a0d93b63e78_0"
+                    ],
+                    "connectivity": "ON",
+                    "hybrid": false,
+                    "local_egress": false
+                },
+                "children": [{
+                        "SegmentPort": {
+                            "attachment": {
+                                "allocate_addresses": "BOTH",
+                                "app_id": "nsx.test.test",
+                                "context_id": "1b6d1238-e683-4ad3-8533-ea6f62b7b436",
+                                "id": "7da01764-d9c9-475b-841b-bdff5ba9d247",
+                                "traffic_tag": 1,
+                                "type": "CHILD"
+                            },
+                            "children": [],
+                            "id": "port_c5d793bd-fb2a-463a-95a9-17529870f8dd",
+                            "marked_for_delete": false,
+                            "parent_path": "/infra/segments/seg_41bb1e46-31f9-42e8-8961-7a0d93b63e78_0",
+                            "path": "/infra/segments/seg_41bb1e46-31f9-42e8-8961-7a0d93b63e78_0/ports/port_c5d793bd-fb2a-463a-95a9-17529870f8dd",
+                            "relative_path": "port_c5d793bd-fb2a-463a-95a9-17529870f8dd",
+                            "resource_type": "SegmentPort",
+                            "tags": [{
+                                    "scope": "ncp/version",
+                                    "tag": "1.2.0"
+                                },
+                                {
+                                    "scope": "ncp/cluster",
+                                    "tag": "k8s-cl1"
+                                },
+                                {
+                                    "scope": "ncp/project",
+                                    "tag": "test"
+                                },
+                                {
+                                    "scope": "ncp/project_uid",
+                                    "tag": "41bb1e46-31f9-42e8-8961-7a0d93b63e78"
+                                },
+                                {
+                                    "scope": "ncp/pod",
+                                    "tag": "test"
+                                },
+                                {
+                                    "scope": "ncp/pod_uid",
+                                    "tag": "c5d793bd-fb2a-463a-95a9-17529870f8dd"
+                                }
+                            ]
+                        },
+                        "marked_for_delete": false,
+                        "resource_type": "ChildSegmentPort"
+                    },
+                    {
+                        "SegmentSecurityProfileBindingMap": {
+                            "children": [],
+                            "id": "sgpm_41bb1e46-31f9-42e8-8961-7a0d93b63e78_0",
+                            "marked_for_delete": false,
+                            "parent_path": "/infra/segments/seg_41bb1e46-31f9-42e8-8961-7a0d93b63e78_0",
+                            "path": "/infra/segments/seg_41bb1e46-31f9-42e8-8961-7a0d93b63e78_0/segment-security-profile-binding-maps/sgpm_41bb1e46-31f9-42e8-8961-7a0d93b63e78_0",
+                            "relative_path": "sgpm_41bb1e46-31f9-42e8-8961-7a0d93b63e78_0",
+                            "resource_type": "SegmentSecurityProfileBindingMap",
+                            "spoofguard_profile_path": "/infra/spoofguard-profiles/sgp_k8s-cl1",
+                            "tags": [{
+                                    "scope": "ncp/version",
+                                    "tag": "1.2.0"
+                                },
+                                {
+                                    "scope": "ncp/cluster",
+                                    "tag": "k8s-cl1"
+                                }
+                            ]
+                        },
+                        "marked_for_delete": false,
+                        "resource_type": "ChildSegmentSecurityProfileBindingMap"
+                    }
+                ],
+                "connectivity_path": "/infra/tier-1s/k8s-cl1",
+                "id": "seg_41bb1e46-31f9-42e8-8961-7a0d93b63e78_0",
+                "marked_for_delete": false,
+                "parent_path": "/infra/segments/seg_41bb1e46-31f9-42e8-8961-7a0d93b63e78_0",
+                "path": "/infra/segments/seg_41bb1e46-31f9-42e8-8961-7a0d93b63e78_0",
+                "relative_path": "seg_41bb1e46-31f9-42e8-8961-7a0d93b63e78_0",
+                "resource_type": "Segment",
+                "subnets": [{
+                    "gateway_address": "10.1.0.1/24",
+                    "network": "10.1.0.0/24"
+                }],
+                "tags": [{
+                        "scope": "ncp/version",
+                        "tag": "1.2.0"
+                    },
+                    {
+                        "scope": "ncp/cluster",
+                        "tag": "k8s-cl1"
+                    },
+                    {
+                        "scope": "ncp/project",
+                        "tag": "test"
+                    },
+                    {
+                        "scope": "ncp/project_uid",
+                        "tag": "41bb1e46-31f9-42e8-8961-7a0d93b63e78"
+                    }
+                ],
+                "transport_zone_path": "/infra/sites/default/enforcement-points/default/transport-zones/41842a22-2ce7-485b-8520-828059fc44e4",
+                "type": "ROUTED"
             },
             "marked_for_delete": false,
             "resource_type": "ChildSegment"
@@ -34040,6 +36164,32 @@
                 "relative_path": "default-generic-lb-persistence-profile",
                 "resource_type": "LBGenericPersistenceProfile",
                 "timeout": 300
+            },
+            "marked_for_delete": false,
+            "resource_type": "ChildLBPersistenceProfile"
+        },
+        {
+            "LBPersistenceProfile": {
+                "children": [],
+                "ha_persistence_mirroring_enabled": false,
+                "id": "k8s-cl1_source_ip_layer4",
+                "marked_for_delete": false,
+                "parent_path": "/infra/lb-persistence-profiles/k8s-cl1_source_ip_layer4",
+                "path": "/infra/lb-persistence-profiles/k8s-cl1_source_ip_layer4",
+                "persistence_shared": true,
+                "purge": "FULL",
+                "relative_path": "k8s-cl1_source_ip_layer4",
+                "resource_type": "LBSourceIpPersistenceProfile",
+                "tags": [{
+                        "scope": "ncp/version",
+                        "tag": "1.2.0"
+                    },
+                    {
+                        "scope": "ncp/cluster",
+                        "tag": "k8s-cl1"
+                    }
+                ],
+                "timeout": 10800
             },
             "marked_for_delete": false,
             "resource_type": "ChildLBPersistenceProfile"
@@ -34210,22 +36360,450 @@
             "IpAddressPool": {
                 "children": [{
                     "IpAddressPoolSubnet": {
-                        "allocation_ranges": [{
-                            "end": "192.168.150.250",
-                            "start": "192.168.150.1"
-                        }],
+                        "auto_assign_gateway": true,
                         "children": [],
-                        "cidr": "192.168.150.0/24",
-                        "id": "e0752700-2b7a-11ea-a987-2dbafbea08e3",
+                        "id": "ibs_56d30ad8-52af-489f-89ee-33b9439624b4_0",
+                        "ip_block_path": "/infra/ip-blocks/k8sblock",
                         "marked_for_delete": false,
-                        "parent_path": "/infra/ip-pools/k8s-cl1-external-ippool",
-                        "path": "/infra/ip-pools/k8s-cl1-external-ippool/ip-subnets/e0752700-2b7a-11ea-a987-2dbafbea08e3",
-                        "relative_path": "e0752700-2b7a-11ea-a987-2dbafbea08e3",
-                        "resource_type": "IpAddressPoolStaticSubnet"
+                        "parent_path": "/infra/ip-pools/ipp_56d30ad8-52af-489f-89ee-33b9439624b4_0",
+                        "path": "/infra/ip-pools/ipp_56d30ad8-52af-489f-89ee-33b9439624b4_0/ip-subnets/ibs_56d30ad8-52af-489f-89ee-33b9439624b4_0",
+                        "relative_path": "ibs_56d30ad8-52af-489f-89ee-33b9439624b4_0",
+                        "resource_type": "IpAddressPoolBlockSubnet",
+                        "size": 256,
+                        "tags": [{
+                                "scope": "ncp/version",
+                                "tag": "1.2.0"
+                            },
+                            {
+                                "scope": "ncp/cluster",
+                                "tag": "k8s-cl1"
+                            },
+                            {
+                                "scope": "ncp/project",
+                                "tag": "test1"
+                            },
+                            {
+                                "scope": "ncp/project_uid",
+                                "tag": "56d30ad8-52af-489f-89ee-33b9439624b4"
+                            }
+                        ]
                     },
                     "marked_for_delete": false,
                     "resource_type": "ChildIpAddressPoolSubnet"
                 }],
+                "id": "ipp_56d30ad8-52af-489f-89ee-33b9439624b4_0",
+                "marked_for_delete": false,
+                "parent_path": "/infra/ip-pools/ipp_56d30ad8-52af-489f-89ee-33b9439624b4_0",
+                "path": "/infra/ip-pools/ipp_56d30ad8-52af-489f-89ee-33b9439624b4_0",
+                "relative_path": "ipp_56d30ad8-52af-489f-89ee-33b9439624b4_0",
+                "resource_type": "IpAddressPool",
+                "tags": [{
+                        "scope": "ncp/version",
+                        "tag": "1.2.0"
+                    },
+                    {
+                        "scope": "ncp/cluster",
+                        "tag": "k8s-cl1"
+                    },
+                    {
+                        "scope": "ncp/project",
+                        "tag": "test1"
+                    },
+                    {
+                        "scope": "ncp/project_uid",
+                        "tag": "56d30ad8-52af-489f-89ee-33b9439624b4"
+                    }
+                ]
+            },
+            "marked_for_delete": false,
+            "resource_type": "ChildIpAddressPool"
+        },
+        {
+            "IpAddressPool": {
+                "children": [{
+                    "IpAddressPoolSubnet": {
+                        "auto_assign_gateway": true,
+                        "children": [],
+                        "id": "ibs_591bbaae-4242-40ef-9df0-ad7742c09a6e_0",
+                        "ip_block_path": "/infra/ip-blocks/k8sblock",
+                        "marked_for_delete": false,
+                        "parent_path": "/infra/ip-pools/ipp_591bbaae-4242-40ef-9df0-ad7742c09a6e_0",
+                        "path": "/infra/ip-pools/ipp_591bbaae-4242-40ef-9df0-ad7742c09a6e_0/ip-subnets/ibs_591bbaae-4242-40ef-9df0-ad7742c09a6e_0",
+                        "relative_path": "ibs_591bbaae-4242-40ef-9df0-ad7742c09a6e_0",
+                        "resource_type": "IpAddressPoolBlockSubnet",
+                        "size": 256,
+                        "tags": [{
+                                "scope": "ncp/version",
+                                "tag": "1.2.0"
+                            },
+                            {
+                                "scope": "ncp/cluster",
+                                "tag": "k8s-cl1"
+                            },
+                            {
+                                "scope": "ncp/project",
+                                "tag": "test2"
+                            },
+                            {
+                                "scope": "ncp/project_uid",
+                                "tag": "591bbaae-4242-40ef-9df0-ad7742c09a6e"
+                            }
+                        ]
+                    },
+                    "marked_for_delete": false,
+                    "resource_type": "ChildIpAddressPoolSubnet"
+                }],
+                "id": "ipp_591bbaae-4242-40ef-9df0-ad7742c09a6e_0",
+                "marked_for_delete": false,
+                "parent_path": "/infra/ip-pools/ipp_591bbaae-4242-40ef-9df0-ad7742c09a6e_0",
+                "path": "/infra/ip-pools/ipp_591bbaae-4242-40ef-9df0-ad7742c09a6e_0",
+                "relative_path": "ipp_591bbaae-4242-40ef-9df0-ad7742c09a6e_0",
+                "resource_type": "IpAddressPool",
+                "tags": [{
+                        "scope": "ncp/version",
+                        "tag": "1.2.0"
+                    },
+                    {
+                        "scope": "ncp/cluster",
+                        "tag": "k8s-cl1"
+                    },
+                    {
+                        "scope": "ncp/project",
+                        "tag": "test2"
+                    },
+                    {
+                        "scope": "ncp/project_uid",
+                        "tag": "591bbaae-4242-40ef-9df0-ad7742c09a6e"
+                    }
+                ]
+            },
+            "marked_for_delete": false,
+            "resource_type": "ChildIpAddressPool"
+        },
+        {
+            "IpAddressPool": {
+                "children": [{
+                    "IpAddressPoolSubnet": {
+                        "auto_assign_gateway": true,
+                        "children": [],
+                        "id": "ibs_86b8ae6b-713e-42d9-9617-70ff862c440e_0",
+                        "ip_block_path": "/infra/ip-blocks/k8sblock",
+                        "marked_for_delete": false,
+                        "parent_path": "/infra/ip-pools/ipp_86b8ae6b-713e-42d9-9617-70ff862c440e_0",
+                        "path": "/infra/ip-pools/ipp_86b8ae6b-713e-42d9-9617-70ff862c440e_0/ip-subnets/ibs_86b8ae6b-713e-42d9-9617-70ff862c440e_0",
+                        "relative_path": "ibs_86b8ae6b-713e-42d9-9617-70ff862c440e_0",
+                        "resource_type": "IpAddressPoolBlockSubnet",
+                        "size": 256,
+                        "tags": [{
+                                "scope": "ncp/version",
+                                "tag": "1.2.0"
+                            },
+                            {
+                                "scope": "ncp/cluster",
+                                "tag": "k8s-cl1"
+                            },
+                            {
+                                "scope": "ncp/project",
+                                "tag": "nsx-system"
+                            },
+                            {
+                                "scope": "ncp/project_uid",
+                                "tag": "86b8ae6b-713e-42d9-9617-70ff862c440e"
+                            }
+                        ]
+                    },
+                    "marked_for_delete": false,
+                    "resource_type": "ChildIpAddressPoolSubnet"
+                }],
+                "id": "ipp_86b8ae6b-713e-42d9-9617-70ff862c440e_0",
+                "marked_for_delete": false,
+                "parent_path": "/infra/ip-pools/ipp_86b8ae6b-713e-42d9-9617-70ff862c440e_0",
+                "path": "/infra/ip-pools/ipp_86b8ae6b-713e-42d9-9617-70ff862c440e_0",
+                "relative_path": "ipp_86b8ae6b-713e-42d9-9617-70ff862c440e_0",
+                "resource_type": "IpAddressPool",
+                "tags": [{
+                        "scope": "ncp/version",
+                        "tag": "1.2.0"
+                    },
+                    {
+                        "scope": "ncp/cluster",
+                        "tag": "k8s-cl1"
+                    },
+                    {
+                        "scope": "ncp/project",
+                        "tag": "nsx-system"
+                    },
+                    {
+                        "scope": "ncp/project_uid",
+                        "tag": "86b8ae6b-713e-42d9-9617-70ff862c440e"
+                    }
+                ]
+            },
+            "marked_for_delete": false,
+            "resource_type": "ChildIpAddressPool"
+        },
+        {
+            "IpAddressPool": {
+                "children": [{
+                        "IpAddressAllocation": {
+                            "children": [],
+                            "id": "9e258344-a12f-4a39-b04d-50962d4729d5",
+                            "marked_for_delete": false,
+                            "parent_path": "/infra/ip-pools/k8s-cl1-external-ippool",
+                            "path": "/infra/ip-pools/k8s-cl1-external-ippool/ip-allocations/9e258344-a12f-4a39-b04d-50962d4729d5",
+                            "relative_path": "9e258344-a12f-4a39-b04d-50962d4729d5",
+                            "resource_type": "IpAddressAllocation",
+                            "tags": [{
+                                    "scope": "ncp/version",
+                                    "tag": "1.2.0"
+                                },
+                                {
+                                    "scope": "ncp/cluster",
+                                    "tag": "k8s-cl1"
+                                },
+                                {
+                                    "scope": "ncp/project",
+                                    "tag": "kube-public"
+                                },
+                                {
+                                    "scope": "ncp/project_uid",
+                                    "tag": "9e258344-a12f-4a39-b04d-50962d4729d5"
+                                }
+                            ]
+                        },
+                        "marked_for_delete": false,
+                        "resource_type": "ChildIpAddressAllocation"
+                    },
+                    {
+                        "IpAddressAllocation": {
+                            "children": [],
+                            "id": "41bb1e46-31f9-42e8-8961-7a0d93b63e78",
+                            "marked_for_delete": false,
+                            "parent_path": "/infra/ip-pools/k8s-cl1-external-ippool",
+                            "path": "/infra/ip-pools/k8s-cl1-external-ippool/ip-allocations/41bb1e46-31f9-42e8-8961-7a0d93b63e78",
+                            "relative_path": "41bb1e46-31f9-42e8-8961-7a0d93b63e78",
+                            "resource_type": "IpAddressAllocation",
+                            "tags": [{
+                                    "scope": "ncp/version",
+                                    "tag": "1.2.0"
+                                },
+                                {
+                                    "scope": "ncp/cluster",
+                                    "tag": "k8s-cl1"
+                                },
+                                {
+                                    "scope": "ncp/project",
+                                    "tag": "test"
+                                },
+                                {
+                                    "scope": "ncp/project_uid",
+                                    "tag": "41bb1e46-31f9-42e8-8961-7a0d93b63e78"
+                                }
+                            ]
+                        },
+                        "marked_for_delete": false,
+                        "resource_type": "ChildIpAddressAllocation"
+                    },
+                    {
+                        "IpAddressAllocation": {
+                            "children": [],
+                            "id": "11f8474e-c2a2-4fdc-bfd5-15f58df1714f",
+                            "marked_for_delete": false,
+                            "parent_path": "/infra/ip-pools/k8s-cl1-external-ippool",
+                            "path": "/infra/ip-pools/k8s-cl1-external-ippool/ip-allocations/11f8474e-c2a2-4fdc-bfd5-15f58df1714f",
+                            "relative_path": "11f8474e-c2a2-4fdc-bfd5-15f58df1714f",
+                            "resource_type": "IpAddressAllocation",
+                            "tags": [{
+                                    "scope": "ncp/version",
+                                    "tag": "1.2.0"
+                                },
+                                {
+                                    "scope": "ncp/cluster",
+                                    "tag": "k8s-cl1"
+                                },
+                                {
+                                    "scope": "ncp/project",
+                                    "tag": "default"
+                                },
+                                {
+                                    "scope": "ncp/project_uid",
+                                    "tag": "11f8474e-c2a2-4fdc-bfd5-15f58df1714f"
+                                }
+                            ]
+                        },
+                        "marked_for_delete": false,
+                        "resource_type": "ChildIpAddressAllocation"
+                    },
+                    {
+                        "IpAddressAllocation": {
+                            "children": [],
+                            "id": "0afc593a-d351-46a3-9c79-a80f3284574d",
+                            "marked_for_delete": false,
+                            "parent_path": "/infra/ip-pools/k8s-cl1-external-ippool",
+                            "path": "/infra/ip-pools/k8s-cl1-external-ippool/ip-allocations/0afc593a-d351-46a3-9c79-a80f3284574d",
+                            "relative_path": "0afc593a-d351-46a3-9c79-a80f3284574d",
+                            "resource_type": "IpAddressAllocation",
+                            "tags": [{
+                                    "scope": "ncp/version",
+                                    "tag": "1.2.0"
+                                },
+                                {
+                                    "scope": "ncp/cluster",
+                                    "tag": "k8s-cl1"
+                                },
+                                {
+                                    "scope": "ncp/project",
+                                    "tag": "kube-node-lease"
+                                },
+                                {
+                                    "scope": "ncp/project_uid",
+                                    "tag": "0afc593a-d351-46a3-9c79-a80f3284574d"
+                                }
+                            ]
+                        },
+                        "marked_for_delete": false,
+                        "resource_type": "ChildIpAddressAllocation"
+                    },
+                    {
+                        "IpAddressAllocation": {
+                            "children": [],
+                            "id": "56d30ad8-52af-489f-89ee-33b9439624b4",
+                            "marked_for_delete": false,
+                            "parent_path": "/infra/ip-pools/k8s-cl1-external-ippool",
+                            "path": "/infra/ip-pools/k8s-cl1-external-ippool/ip-allocations/56d30ad8-52af-489f-89ee-33b9439624b4",
+                            "relative_path": "56d30ad8-52af-489f-89ee-33b9439624b4",
+                            "resource_type": "IpAddressAllocation",
+                            "tags": [{
+                                    "scope": "ncp/version",
+                                    "tag": "1.2.0"
+                                },
+                                {
+                                    "scope": "ncp/cluster",
+                                    "tag": "k8s-cl1"
+                                },
+                                {
+                                    "scope": "ncp/project",
+                                    "tag": "test1"
+                                },
+                                {
+                                    "scope": "ncp/project_uid",
+                                    "tag": "56d30ad8-52af-489f-89ee-33b9439624b4"
+                                }
+                            ]
+                        },
+                        "marked_for_delete": false,
+                        "resource_type": "ChildIpAddressAllocation"
+                    },
+                    {
+                        "IpAddressAllocation": {
+                            "children": [],
+                            "id": "86b8ae6b-713e-42d9-9617-70ff862c440e",
+                            "marked_for_delete": false,
+                            "parent_path": "/infra/ip-pools/k8s-cl1-external-ippool",
+                            "path": "/infra/ip-pools/k8s-cl1-external-ippool/ip-allocations/86b8ae6b-713e-42d9-9617-70ff862c440e",
+                            "relative_path": "86b8ae6b-713e-42d9-9617-70ff862c440e",
+                            "resource_type": "IpAddressAllocation",
+                            "tags": [{
+                                    "scope": "ncp/version",
+                                    "tag": "1.2.0"
+                                },
+                                {
+                                    "scope": "ncp/cluster",
+                                    "tag": "k8s-cl1"
+                                },
+                                {
+                                    "scope": "ncp/project",
+                                    "tag": "nsx-system"
+                                },
+                                {
+                                    "scope": "ncp/project_uid",
+                                    "tag": "86b8ae6b-713e-42d9-9617-70ff862c440e"
+                                }
+                            ]
+                        },
+                        "marked_for_delete": false,
+                        "resource_type": "ChildIpAddressAllocation"
+                    },
+                    {
+                        "IpAddressAllocation": {
+                            "children": [],
+                            "id": "ef95772c-62b0-4e81-8638-d9da85d4a957",
+                            "marked_for_delete": false,
+                            "parent_path": "/infra/ip-pools/k8s-cl1-external-ippool",
+                            "path": "/infra/ip-pools/k8s-cl1-external-ippool/ip-allocations/ef95772c-62b0-4e81-8638-d9da85d4a957",
+                            "relative_path": "ef95772c-62b0-4e81-8638-d9da85d4a957",
+                            "resource_type": "IpAddressAllocation",
+                            "tags": [{
+                                    "scope": "ncp/version",
+                                    "tag": "1.2.0"
+                                },
+                                {
+                                    "scope": "ncp/cluster",
+                                    "tag": "k8s-cl1"
+                                },
+                                {
+                                    "scope": "ncp/project",
+                                    "tag": "kube-system"
+                                },
+                                {
+                                    "scope": "ncp/project_uid",
+                                    "tag": "ef95772c-62b0-4e81-8638-d9da85d4a957"
+                                }
+                            ]
+                        },
+                        "marked_for_delete": false,
+                        "resource_type": "ChildIpAddressAllocation"
+                    },
+                    {
+                        "IpAddressAllocation": {
+                            "children": [],
+                            "id": "591bbaae-4242-40ef-9df0-ad7742c09a6e",
+                            "marked_for_delete": false,
+                            "parent_path": "/infra/ip-pools/k8s-cl1-external-ippool",
+                            "path": "/infra/ip-pools/k8s-cl1-external-ippool/ip-allocations/591bbaae-4242-40ef-9df0-ad7742c09a6e",
+                            "relative_path": "591bbaae-4242-40ef-9df0-ad7742c09a6e",
+                            "resource_type": "IpAddressAllocation",
+                            "tags": [{
+                                    "scope": "ncp/version",
+                                    "tag": "1.2.0"
+                                },
+                                {
+                                    "scope": "ncp/cluster",
+                                    "tag": "k8s-cl1"
+                                },
+                                {
+                                    "scope": "ncp/project",
+                                    "tag": "test2"
+                                },
+                                {
+                                    "scope": "ncp/project_uid",
+                                    "tag": "591bbaae-4242-40ef-9df0-ad7742c09a6e"
+                                }
+                            ]
+                        },
+                        "marked_for_delete": false,
+                        "resource_type": "ChildIpAddressAllocation"
+                    },
+                    {
+                        "IpAddressPoolSubnet": {
+                            "allocation_ranges": [{
+                                "end": "192.168.150.254",
+                                "start": "192.168.150.10"
+                            }],
+                            "children": [],
+                            "cidr": "192.168.150.0/24",
+                            "gateway_ip": "192.168.150.1",
+                            "id": "e0752700-2b7a-11ea-a987-2dbafbea08e3",
+                            "marked_for_delete": false,
+                            "parent_path": "/infra/ip-pools/k8s-cl1-external-ippool",
+                            "path": "/infra/ip-pools/k8s-cl1-external-ippool/ip-subnets/e0752700-2b7a-11ea-a987-2dbafbea08e3",
+                            "relative_path": "e0752700-2b7a-11ea-a987-2dbafbea08e3",
+                            "resource_type": "IpAddressPoolStaticSubnet"
+                        },
+                        "marked_for_delete": false,
+                        "resource_type": "ChildIpAddressPoolSubnet"
+                    }
+                ],
                 "description": "This will be used for SNAT per namespace. It will be also usd for Service of type LB and Ingress controller since we do not specify sparate pool for LB.",
                 "id": "k8s-cl1-external-ippool",
                 "marked_for_delete": false,
@@ -34233,6 +36811,192 @@
                 "path": "/infra/ip-pools/k8s-cl1-external-ippool",
                 "relative_path": "k8s-cl1-external-ippool",
                 "resource_type": "IpAddressPool"
+            },
+            "marked_for_delete": false,
+            "resource_type": "ChildIpAddressPool"
+        },
+        {
+            "IpAddressPool": {
+                "children": [{
+                    "IpAddressPoolSubnet": {
+                        "auto_assign_gateway": true,
+                        "children": [],
+                        "id": "ibs_9e258344-a12f-4a39-b04d-50962d4729d5_0",
+                        "ip_block_path": "/infra/ip-blocks/k8sblock",
+                        "marked_for_delete": false,
+                        "parent_path": "/infra/ip-pools/ipp_9e258344-a12f-4a39-b04d-50962d4729d5_0",
+                        "path": "/infra/ip-pools/ipp_9e258344-a12f-4a39-b04d-50962d4729d5_0/ip-subnets/ibs_9e258344-a12f-4a39-b04d-50962d4729d5_0",
+                        "relative_path": "ibs_9e258344-a12f-4a39-b04d-50962d4729d5_0",
+                        "resource_type": "IpAddressPoolBlockSubnet",
+                        "size": 256,
+                        "tags": [{
+                                "scope": "ncp/version",
+                                "tag": "1.2.0"
+                            },
+                            {
+                                "scope": "ncp/cluster",
+                                "tag": "k8s-cl1"
+                            },
+                            {
+                                "scope": "ncp/project",
+                                "tag": "kube-public"
+                            },
+                            {
+                                "scope": "ncp/project_uid",
+                                "tag": "9e258344-a12f-4a39-b04d-50962d4729d5"
+                            }
+                        ]
+                    },
+                    "marked_for_delete": false,
+                    "resource_type": "ChildIpAddressPoolSubnet"
+                }],
+                "id": "ipp_9e258344-a12f-4a39-b04d-50962d4729d5_0",
+                "marked_for_delete": false,
+                "parent_path": "/infra/ip-pools/ipp_9e258344-a12f-4a39-b04d-50962d4729d5_0",
+                "path": "/infra/ip-pools/ipp_9e258344-a12f-4a39-b04d-50962d4729d5_0",
+                "relative_path": "ipp_9e258344-a12f-4a39-b04d-50962d4729d5_0",
+                "resource_type": "IpAddressPool",
+                "tags": [{
+                        "scope": "ncp/version",
+                        "tag": "1.2.0"
+                    },
+                    {
+                        "scope": "ncp/cluster",
+                        "tag": "k8s-cl1"
+                    },
+                    {
+                        "scope": "ncp/project",
+                        "tag": "kube-public"
+                    },
+                    {
+                        "scope": "ncp/project_uid",
+                        "tag": "9e258344-a12f-4a39-b04d-50962d4729d5"
+                    }
+                ]
+            },
+            "marked_for_delete": false,
+            "resource_type": "ChildIpAddressPool"
+        },
+        {
+            "IpAddressPool": {
+                "children": [{
+                    "IpAddressPoolSubnet": {
+                        "auto_assign_gateway": true,
+                        "children": [],
+                        "id": "ibs_41bb1e46-31f9-42e8-8961-7a0d93b63e78_0",
+                        "ip_block_path": "/infra/ip-blocks/k8s-cl1-pod-network-ipblock",
+                        "marked_for_delete": false,
+                        "parent_path": "/infra/ip-pools/ipp_41bb1e46-31f9-42e8-8961-7a0d93b63e78_0",
+                        "path": "/infra/ip-pools/ipp_41bb1e46-31f9-42e8-8961-7a0d93b63e78_0/ip-subnets/ibs_41bb1e46-31f9-42e8-8961-7a0d93b63e78_0",
+                        "relative_path": "ibs_41bb1e46-31f9-42e8-8961-7a0d93b63e78_0",
+                        "resource_type": "IpAddressPoolBlockSubnet",
+                        "size": 256,
+                        "tags": [{
+                                "scope": "ncp/version",
+                                "tag": "1.2.0"
+                            },
+                            {
+                                "scope": "ncp/cluster",
+                                "tag": "k8s-cl1"
+                            },
+                            {
+                                "scope": "ncp/project",
+                                "tag": "test"
+                            },
+                            {
+                                "scope": "ncp/project_uid",
+                                "tag": "41bb1e46-31f9-42e8-8961-7a0d93b63e78"
+                            }
+                        ]
+                    },
+                    "marked_for_delete": false,
+                    "resource_type": "ChildIpAddressPoolSubnet"
+                }],
+                "id": "ipp_41bb1e46-31f9-42e8-8961-7a0d93b63e78_0",
+                "marked_for_delete": false,
+                "parent_path": "/infra/ip-pools/ipp_41bb1e46-31f9-42e8-8961-7a0d93b63e78_0",
+                "path": "/infra/ip-pools/ipp_41bb1e46-31f9-42e8-8961-7a0d93b63e78_0",
+                "relative_path": "ipp_41bb1e46-31f9-42e8-8961-7a0d93b63e78_0",
+                "resource_type": "IpAddressPool",
+                "tags": [{
+                        "scope": "ncp/version",
+                        "tag": "1.2.0"
+                    },
+                    {
+                        "scope": "ncp/cluster",
+                        "tag": "k8s-cl1"
+                    },
+                    {
+                        "scope": "ncp/project",
+                        "tag": "test"
+                    },
+                    {
+                        "scope": "ncp/project_uid",
+                        "tag": "41bb1e46-31f9-42e8-8961-7a0d93b63e78"
+                    }
+                ]
+            },
+            "marked_for_delete": false,
+            "resource_type": "ChildIpAddressPool"
+        },
+        {
+            "IpAddressPool": {
+                "children": [{
+                    "IpAddressPoolSubnet": {
+                        "auto_assign_gateway": true,
+                        "children": [],
+                        "id": "ibs_11f8474e-c2a2-4fdc-bfd5-15f58df1714f_0",
+                        "ip_block_path": "/infra/ip-blocks/k8sblock",
+                        "marked_for_delete": false,
+                        "parent_path": "/infra/ip-pools/ipp_11f8474e-c2a2-4fdc-bfd5-15f58df1714f_0",
+                        "path": "/infra/ip-pools/ipp_11f8474e-c2a2-4fdc-bfd5-15f58df1714f_0/ip-subnets/ibs_11f8474e-c2a2-4fdc-bfd5-15f58df1714f_0",
+                        "relative_path": "ibs_11f8474e-c2a2-4fdc-bfd5-15f58df1714f_0",
+                        "resource_type": "IpAddressPoolBlockSubnet",
+                        "size": 256,
+                        "tags": [{
+                                "scope": "ncp/version",
+                                "tag": "1.2.0"
+                            },
+                            {
+                                "scope": "ncp/cluster",
+                                "tag": "k8s-cl1"
+                            },
+                            {
+                                "scope": "ncp/project",
+                                "tag": "default"
+                            },
+                            {
+                                "scope": "ncp/project_uid",
+                                "tag": "11f8474e-c2a2-4fdc-bfd5-15f58df1714f"
+                            }
+                        ]
+                    },
+                    "marked_for_delete": false,
+                    "resource_type": "ChildIpAddressPoolSubnet"
+                }],
+                "id": "ipp_11f8474e-c2a2-4fdc-bfd5-15f58df1714f_0",
+                "marked_for_delete": false,
+                "parent_path": "/infra/ip-pools/ipp_11f8474e-c2a2-4fdc-bfd5-15f58df1714f_0",
+                "path": "/infra/ip-pools/ipp_11f8474e-c2a2-4fdc-bfd5-15f58df1714f_0",
+                "relative_path": "ipp_11f8474e-c2a2-4fdc-bfd5-15f58df1714f_0",
+                "resource_type": "IpAddressPool",
+                "tags": [{
+                        "scope": "ncp/version",
+                        "tag": "1.2.0"
+                    },
+                    {
+                        "scope": "ncp/cluster",
+                        "tag": "k8s-cl1"
+                    },
+                    {
+                        "scope": "ncp/project",
+                        "tag": "default"
+                    },
+                    {
+                        "scope": "ncp/project_uid",
+                        "tag": "11f8474e-c2a2-4fdc-bfd5-15f58df1714f"
+                    }
+                ]
             },
             "marked_for_delete": false,
             "resource_type": "ChildIpAddressPool"
@@ -34265,6 +37029,243 @@
                 "path": "/infra/ip-pools/TEP-pool",
                 "relative_path": "TEP-pool",
                 "resource_type": "IpAddressPool"
+            },
+            "marked_for_delete": false,
+            "resource_type": "ChildIpAddressPool"
+        },
+        {
+            "IpAddressPool": {
+                "children": [{
+                    "IpAddressPoolSubnet": {
+                        "auto_assign_gateway": true,
+                        "children": [],
+                        "id": "ibs_ef95772c-62b0-4e81-8638-d9da85d4a957_0",
+                        "ip_block_path": "/infra/ip-blocks/k8sblock",
+                        "marked_for_delete": false,
+                        "parent_path": "/infra/ip-pools/ipp_ef95772c-62b0-4e81-8638-d9da85d4a957_0",
+                        "path": "/infra/ip-pools/ipp_ef95772c-62b0-4e81-8638-d9da85d4a957_0/ip-subnets/ibs_ef95772c-62b0-4e81-8638-d9da85d4a957_0",
+                        "relative_path": "ibs_ef95772c-62b0-4e81-8638-d9da85d4a957_0",
+                        "resource_type": "IpAddressPoolBlockSubnet",
+                        "size": 256,
+                        "tags": [{
+                                "scope": "ncp/version",
+                                "tag": "1.2.0"
+                            },
+                            {
+                                "scope": "ncp/cluster",
+                                "tag": "k8s-cl1"
+                            },
+                            {
+                                "scope": "ncp/project",
+                                "tag": "kube-system"
+                            },
+                            {
+                                "scope": "ncp/project_uid",
+                                "tag": "ef95772c-62b0-4e81-8638-d9da85d4a957"
+                            }
+                        ]
+                    },
+                    "marked_for_delete": false,
+                    "resource_type": "ChildIpAddressPoolSubnet"
+                }],
+                "id": "ipp_ef95772c-62b0-4e81-8638-d9da85d4a957_0",
+                "marked_for_delete": false,
+                "parent_path": "/infra/ip-pools/ipp_ef95772c-62b0-4e81-8638-d9da85d4a957_0",
+                "path": "/infra/ip-pools/ipp_ef95772c-62b0-4e81-8638-d9da85d4a957_0",
+                "relative_path": "ipp_ef95772c-62b0-4e81-8638-d9da85d4a957_0",
+                "resource_type": "IpAddressPool",
+                "tags": [{
+                        "scope": "ncp/version",
+                        "tag": "1.2.0"
+                    },
+                    {
+                        "scope": "ncp/cluster",
+                        "tag": "k8s-cl1"
+                    },
+                    {
+                        "scope": "ncp/project",
+                        "tag": "kube-system"
+                    },
+                    {
+                        "scope": "ncp/project_uid",
+                        "tag": "ef95772c-62b0-4e81-8638-d9da85d4a957"
+                    }
+                ]
+            },
+            "marked_for_delete": false,
+            "resource_type": "ChildIpAddressPool"
+        },
+        {
+            "IpAddressPool": {
+                "children": [{
+                        "IpAddressAllocation": {
+                            "children": [],
+                            "id": "k8s-cl1",
+                            "marked_for_delete": false,
+                            "parent_path": "/infra/ip-pools/k8s-cl1-lb-ippool",
+                            "path": "/infra/ip-pools/k8s-cl1-lb-ippool/ip-allocations/k8s-cl1",
+                            "relative_path": "k8s-cl1",
+                            "resource_type": "IpAddressAllocation",
+                            "tags": [{
+                                    "scope": "ncp/version",
+                                    "tag": "1.2.0"
+                                },
+                                {
+                                    "scope": "ncp/cluster",
+                                    "tag": "k8s-cl1"
+                                },
+                                {
+                                    "scope": "ncp/created_for",
+                                    "tag": "l7_per_cluster"
+                                }
+                            ]
+                        },
+                        "marked_for_delete": false,
+                        "resource_type": "ChildIpAddressAllocation"
+                    },
+                    {
+                        "IpAddressPoolSubnet": {
+                            "allocation_ranges": [{
+                                "end": "20.20.20.254",
+                                "start": "20.20.20.30"
+                            }],
+                            "children": [],
+                            "cidr": "20.20.20.0/24",
+                            "gateway_ip": "20.20.20.1",
+                            "id": "b3664ed0-312c-11ea-b89b-17668b5802b2",
+                            "marked_for_delete": false,
+                            "parent_path": "/infra/ip-pools/k8s-cl1-lb-ippool",
+                            "path": "/infra/ip-pools/k8s-cl1-lb-ippool/ip-subnets/b3664ed0-312c-11ea-b89b-17668b5802b2",
+                            "relative_path": "b3664ed0-312c-11ea-b89b-17668b5802b2",
+                            "resource_type": "IpAddressPoolStaticSubnet"
+                        },
+                        "marked_for_delete": false,
+                        "resource_type": "ChildIpAddressPoolSubnet"
+                    }
+                ],
+                "description": "IP Space for Service LB",
+                "id": "k8s-cl1-lb-ippool",
+                "marked_for_delete": false,
+                "parent_path": "/infra/ip-pools/k8s-cl1-lb-ippool",
+                "path": "/infra/ip-pools/k8s-cl1-lb-ippool",
+                "relative_path": "k8s-cl1-lb-ippool",
+                "resource_type": "IpAddressPool"
+            },
+            "marked_for_delete": false,
+            "resource_type": "ChildIpAddressPool"
+        },
+        {
+            "IpAddressPool": {
+                "children": [{
+                    "IpAddressPoolSubnet": {
+                        "auto_assign_gateway": true,
+                        "children": [],
+                        "id": "ibs_0afc593a-d351-46a3-9c79-a80f3284574d_0",
+                        "ip_block_path": "/infra/ip-blocks/k8sblock",
+                        "marked_for_delete": false,
+                        "parent_path": "/infra/ip-pools/ipp_0afc593a-d351-46a3-9c79-a80f3284574d_0",
+                        "path": "/infra/ip-pools/ipp_0afc593a-d351-46a3-9c79-a80f3284574d_0/ip-subnets/ibs_0afc593a-d351-46a3-9c79-a80f3284574d_0",
+                        "relative_path": "ibs_0afc593a-d351-46a3-9c79-a80f3284574d_0",
+                        "resource_type": "IpAddressPoolBlockSubnet",
+                        "size": 256,
+                        "tags": [{
+                                "scope": "ncp/version",
+                                "tag": "1.2.0"
+                            },
+                            {
+                                "scope": "ncp/cluster",
+                                "tag": "k8s-cl1"
+                            },
+                            {
+                                "scope": "ncp/project",
+                                "tag": "kube-node-lease"
+                            },
+                            {
+                                "scope": "ncp/project_uid",
+                                "tag": "0afc593a-d351-46a3-9c79-a80f3284574d"
+                            }
+                        ]
+                    },
+                    "marked_for_delete": false,
+                    "resource_type": "ChildIpAddressPoolSubnet"
+                }],
+                "id": "ipp_0afc593a-d351-46a3-9c79-a80f3284574d_0",
+                "marked_for_delete": false,
+                "parent_path": "/infra/ip-pools/ipp_0afc593a-d351-46a3-9c79-a80f3284574d_0",
+                "path": "/infra/ip-pools/ipp_0afc593a-d351-46a3-9c79-a80f3284574d_0",
+                "relative_path": "ipp_0afc593a-d351-46a3-9c79-a80f3284574d_0",
+                "resource_type": "IpAddressPool",
+                "tags": [{
+                        "scope": "ncp/version",
+                        "tag": "1.2.0"
+                    },
+                    {
+                        "scope": "ncp/cluster",
+                        "tag": "k8s-cl1"
+                    },
+                    {
+                        "scope": "ncp/project",
+                        "tag": "kube-node-lease"
+                    },
+                    {
+                        "scope": "ncp/project_uid",
+                        "tag": "0afc593a-d351-46a3-9c79-a80f3284574d"
+                    }
+                ]
+            },
+            "marked_for_delete": false,
+            "resource_type": "ChildIpAddressPool"
+        },
+        {
+            "IpAddressPool": {
+                "children": [{
+                    "IpAddressPoolSubnet": {
+                        "allocation_ranges": [{
+                            "end": "169.254.131.254",
+                            "start": "169.254.128.2"
+                        }],
+                        "children": [],
+                        "cidr": "169.254.128.0/22",
+                        "description": "Automatically created from lb segment subnet config",
+                        "id": "lb_segment_subnet_k8s-cl1",
+                        "marked_for_delete": false,
+                        "parent_path": "/infra/ip-pools/lb_segment_pool_k8s-cl1",
+                        "path": "/infra/ip-pools/lb_segment_pool_k8s-cl1/ip-subnets/lb_segment_subnet_k8s-cl1",
+                        "relative_path": "lb_segment_subnet_k8s-cl1",
+                        "resource_type": "IpAddressPoolStaticSubnet",
+                        "tags": [{
+                                "scope": "ncp/version",
+                                "tag": "1.2.0"
+                            },
+                            {
+                                "scope": "ncp/cluster",
+                                "tag": "k8s-cl1"
+                            }
+                        ]
+                    },
+                    "marked_for_delete": false,
+                    "resource_type": "ChildIpAddressPoolSubnet"
+                }],
+                "description": "Automatically created from lb segment subnet config",
+                "id": "lb_segment_pool_k8s-cl1",
+                "marked_for_delete": false,
+                "parent_path": "/infra/ip-pools/lb_segment_pool_k8s-cl1",
+                "path": "/infra/ip-pools/lb_segment_pool_k8s-cl1",
+                "relative_path": "lb_segment_pool_k8s-cl1",
+                "resource_type": "IpAddressPool",
+                "tags": [{
+                        "scope": "ncp/version",
+                        "tag": "1.2.0"
+                    },
+                    {
+                        "scope": "ncp/cluster",
+                        "tag": "k8s-cl1"
+                    },
+                    {
+                        "scope": "ncp/lb_resource",
+                        "tag": "true"
+                    }
+                ]
             },
             "marked_for_delete": false,
             "resource_type": "ChildIpAddressPool"
