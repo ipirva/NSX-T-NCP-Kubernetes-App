@@ -1,0 +1,45 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: local-web-pv
+  labels:
+    type: local
+spec:
+  storageClassName: local-web-storage-class
+  capacity:
+    storage: 1Gi
+  local:
+    path: /mnt/data
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: local-web-storage-class
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+          - key: kubernetes.io/hostname
+            operator: NotIn
+            values:
+              - master1.corp.local
+              - master2.corp.local
+              - master3.corp.local
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: local-web-pvc
+  namespace: myapp
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: local-web-storage-class
+  resources:
+    requests:
+      storage: 10M
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: local-web-storage-class
+provisioner: kubernetes.io/no-provisioner
+volumeBindingMode: WaitForFirstConsumer

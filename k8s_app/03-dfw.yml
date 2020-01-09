@@ -1,0 +1,57 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny
+  namespace: myapp
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-all
+  namespace: myapp
+spec:
+  podSelector: {}
+  policyTypes:
+    - Egress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: nginx-1-ingress-from-lb
+  namespace: myapp
+spec:
+  podSelector:
+    matchLabels:
+      app: nginx-1
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+      - ipBlock:
+          cidr: 100.64.0.1/32
+      ports:
+        - protocol: TCP
+          port: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: nginx-2-ingress-from-lb
+  namespace: myapp
+spec:
+  podSelector:
+    matchLabels:
+      app: nginx-2
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+      - ipBlock:
+          cidr: 100.64.0.1/32
+      ports:
+        - protocol: TCP
+          port: 8080

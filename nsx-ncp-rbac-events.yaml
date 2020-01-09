@@ -1,0 +1,52 @@
+# Create a ServiceAccount for nsx-ncp
+# myapp is the namespace of my application
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: nsx-ncp-svc-account
+  namespace: default
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: nsx-ncp-svc-account
+  namespace: myapp
+---
+# Create ClusterRole for nsx-ncp
+kind: ClusterRole
+# Set the apiVersion to rbac.authorization.k8s.io/v1beta1 when k8s < v1.8
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: nsx-ncp-cluster-role
+rules:
+  - apiGroups:
+      - ""
+      - events.k8s.io
+    resources:
+      - events
+    verbs:
+      - get
+      - watch
+      - list
+      - create
+      - patch
+      - update
+---
+# Bind ServiceAccount created for nsx-ncp to its ClusterRole
+kind: ClusterRoleBinding
+# Set the apiVersion to rbac.authorization.k8s.io/v1beta1 when k8s < v1.8
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: nsx-ncp-cluster-role-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+
+  kind: ClusterRole
+  name: nsx-ncp-cluster-role
+subjects:
+  - kind: ServiceAccount
+    name: nsx-ncp-svc-account
+    namespace: default
+  - kind: ServiceAccount
+    name: nsx-ncp-svc-account
+    namespace: myapp
