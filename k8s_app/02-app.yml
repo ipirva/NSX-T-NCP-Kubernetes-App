@@ -97,6 +97,8 @@ metadata:
   namespace: myapp
   annotations:
     kubernetes.io/ingress.class: "nsx"
+    kubernetes.io/ingress.allow-http: "true"
+    ncp/http-redirect: "false"
     ncp/use-regex: "true"
     ingress.kubernetes.io/rewrite-target: /
 spec:
@@ -112,3 +114,4 @@ spec:
             backend:
               serviceName: my-web-service-2
               servicePort: 80
+
