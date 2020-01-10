@@ -5,8 +5,8 @@ import json
 import re
 import yaml
 
-file = "nsx_cluster_ncp_config_dump_.json"
-fileUpdate = "nsx_cluster_ncp_config_dump.json"
+file = "nsx_cluster_myapp_config_dump_.json"
+fileUpdate = "nsx_cluster_myapp_config_dump.json"
 
 with open(file) as oldfile, open(fileUpdate, 'w') as newfile:
     for line in oldfile:
