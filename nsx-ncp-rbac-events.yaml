@@ -1,16 +1,10 @@
 # Create a ServiceAccount for nsx-ncp
-# myapp is the namespace of my application
+# myapp is the namespace of my app
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: nsx-ncp-svc-account
-  namespace: default
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: nsx-ncp-svc-account
-  namespace: myapp
+  namespace: nsx-system
 ---
 # Create ClusterRole for nsx-ncp
 kind: ClusterRole
@@ -46,7 +40,10 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: nsx-ncp-svc-account
+    namespace: myapp
+  - kind: ServiceAccount
+    name: nsx-ncp-svc-account
     namespace: default
   - kind: ServiceAccount
     name: nsx-ncp-svc-account
-    namespace: myapp
+    namespace: nsx-system
